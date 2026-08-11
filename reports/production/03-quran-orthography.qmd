@@ -1,0 +1,316 @@
+---
+title: "إحصاء الألف الخنجرية والهمزات في القرآن الكريم"
+subtitle: "ترتيب هرمي مضغوط حسب العشرات والأجزاء"
+cover:
+  title: "تقرير إحصائي"
+  subtitle: "إحصاء الألف الخنجرية والهمزات في القرآن الكريم"
+---
+
+## مدخل التقرير
+
+يجمع هذا التقرير الكلمات القرآنية التي تشتمل على ألف خنجرية أو همزة قطع، ويرتبها بحسب أجزاء القرآن الكريم. ويقوم التصنيف على بنية الكلمة في العربية، لا على مجرد موضع العلامة في صورتها المطبوعة؛ فالحرف الذي يسبق الكلمة قد يكون حرف عطف أو جر، والحرف الذي يليها قد يكون ضميراً أو علامة تثنية أو جمع.
+
+واستُعين في تمييز حروف المعاني من الحروف الأصلية بالتحليل الصرفي الموثق في [«مدونة القرآن العربية»](https://corpus.quran.com/)، ثم طُبقت قواعد رسم الهمزة المعروفة في العربية. وبهذا لا تُفصل الواو الأصلية في [﴿وَصَّىٰ﴾]{.quran}، ولا تُجعل الباء في [﴿بَأْسَ﴾]{.quran} حرف جر، ولا السين في [﴿سَأَلَ﴾]{.quran} حرف استقبال.
+
+والتصنيف وصفٌ للظاهرة الموجودة في الكلمة، ولذلك قد ترد الكلمة في أكثر من قسم. فكلمة [﴿أُو۟لَٰٓئِكَ﴾]{.quran}، مثلاً، تجمع همزة ابتدائية وألفاً خنجرية.
+
+## التعريفات
+
+### الألف الخنجرية
+
+ألف صغيرة قائمة تُرسم فوق الحرف للدلالة على مدّ بالألف في موضع حُذفت منه صورة الألف الكاملة في الرسم، مثل [﴿هَٰذَا﴾]{.quran} و[﴿ٱلرَّحْمَٰنِ﴾]{.quran}. وهي علامة للألف وليست همزة. ويُدرج لفظ الجلالة، مثل [﴿ٱللَّهِ﴾]{.quran}، في هذا القسم؛ لأن الألف المنطوقة بعد اللام غير مرسومة فيه ألفاً كاملة.
+
+### الهمزة الابتدائية
+
+هي همزة القطع الواقعة في أول أصل الكلمة، مثل [﴿إِيَّاكَ﴾]{.quran} و[﴿أَنزَلَ﴾]{.quran}. ولا تزول عنها صفة الابتداء إذا سبقها حرف معنى متصل، كالواو والفاء والباء واللام وسين الاستقبال؛ ولذلك تبقى الهمزة ابتدائية في [﴿وَإِيَّاكَ﴾]{.quran} و[﴿فَإِنَّ﴾]{.quran} و[﴿بِأَنَّهُمْ﴾]{.quran} و[﴿سَأُرِيكُمْ﴾]{.quran}.
+
+ولا يجوز نزع حرف من أصل الكلمة بحجة تشابهه مع حروف المعاني؛ فالواو في [﴿وَصَّىٰ﴾]{.quran} من بنية الفعل، وليست واو عطف.
+
+أما همزة الوصل، مثل همزة [﴿ٱلْحَمْدُ﴾]{.quran}، فهي ثابتة عند الابتداء وساقطة في الوصل. وقد عُرّفت هنا لتمييزها من همزة القطع، لكنها لا تدخل في إحصاء الهمزة الابتدائية في هذا التقرير؛ إذ خُصص الإحصاء لهمزة القطع المرسومة.
+
+### الهمزة المتوسطة
+
+هي الهمزة الواقعة في أثناء الكلمة، ولها صورتان:
+
+- **متوسطة أصلاً:** تكون بين حرفين من بنية الكلمة، مثل [﴿سَأَلَ﴾]{.quran} و[﴿بِئْسَ﴾]{.quran} و[﴿فُؤَادَ﴾]{.quran}.
+
+- **متوسطة عَرَضاً:** تكون في آخر أصل الكلمة، ثم يتصل بها ما يجعلها في أثنائها، كضمير أو علامة تأنيث أو تثنية أو جمع؛ ومن ذلك [﴿أَهْوَآءَهُمْ﴾]{.quran}، فالهمزة كانت في آخر الاسم قبل اتصال الضمير به، ثم صارت متوسطة عَرَضاً.
+
+وتعامل همزة [﴿لَئِنْ﴾]{.quran} و[﴿لِئَلَّا﴾]{.quran} معاملة الهمزة المتوسطة في الرسم، وهما من الاستثناءات المشهورة في هذا الباب.
+
+### الهمزة المتطرفة
+
+هي الهمزة الواقعة في آخر الكلمة، مثل [﴿شَىْءٌ﴾]{.quran} و[﴿جَآءَ﴾]{.quran} و[﴿لُؤْلُؤٌ﴾]{.quran}. ولا يغيّر الحركات أو التنوين أو علامات الوقف والضبط القرآني موضعها؛ لأنها ليست حروفاً من بنية الكلمة. فإذا اتصل بها ضمير أو علامة تأنيث أو تثنية أو جمع صارت متوسطة عَرَضاً، كما تقدم.
+
+## ضوابط التصنيف
+
+1. تُبحث كل همزة في الكلمة على حدة؛ فقد تجتمع في الكلمة الواحدة أكثر من همزة أو أكثر من ظاهرة.
+2. تُردّ الكلمة إلى بنيتها اللغوية عند تعيين أولها، مع إبقاء حروفها الأصلية، وفصل حروف المعاني السابقة عنها.
+3. لا تغيّر الواو والفاء والباء واللام وسين الاستقبال ونحوها ابتدائية همزة القطع التي تليها.
+4. تُعد الضمائر وعلامات التأنيث والتثنية والجمع المتصلة من آخر الكلمة؛ فتجعل الهمزة السابقة لها متوسطة عَرَضاً.
+5. لا تُعد الحركات وعلامات المد والوقف والضبط حروفاً عند تعيين موضع الهمزة.
+6. لا تظهر الصيغة المكتوبة نفسها أكثر من مرة في القسم الواحد من الجزء نفسه. أما الصيغ المختلفة فتبقى مستقلة؛ لذلك تُذكر [﴿أُو۟لَٰٓئِكَ﴾]{.quran} و[﴿وَأُو۟لَٰٓئِكَ﴾]{.quran} كل واحدة منهما على حدة.
+
+تستند هذه التعريفات إلى أبواب [الهمزة في أول الكلمة](https://dorar.net/arabia/2603/) و[الهمزة في آخرها](https://dorar.net/arabia/2607/) في موسوعة اللغة العربية، وإلى بيان [التوسط الأصلي والعارض](https://faculty.ksu.edu.sa/ar/halsanad/page/19691)، وإلى تعريف [الألف الخنجرية في رسم المصحف](https://islamqa.info/ar/answers/278624).
+
+### خلاصة التصنيف
+
+```{mermaid}
+%%| label: fig-orthography-guide
+%%| fig-cap: "دليل مبسط لتصنيف الألف الخنجرية والهمزة"
+%%| fig-width: 7
+%%| out-width: 100%
+%%{init: {"theme": "base", "htmlLabels": true, "flowchart": {"diagramPadding": 24}, "themeVariables": {"fontFamily": "Scheherazade New, Arial", "primaryTextColor": "#263C31", "lineColor": "#6F8579"}}}%%
+flowchart TB
+    A["انظر في بنية الكلمة"]
+    A --> B{"هل فيها ألف صغيرة<br/>تدل على المد؟"}
+    B -->|نعم| C["ألف خنجرية<br/><span dir='rtl'>﴿هَٰذَا﴾</span>"]
+    A --> D{"ما موضع همزة القطع<br/>في الكلمة؟"}
+    D -->|في أول أصلها<br/>ولو سبقها حرف معنى| E["همزة ابتدائية<br/><span dir='rtl'>﴿وَإِيَّاكَ﴾</span>"]
+    D -->|بين حرفين أصلاً<br/>أو بعد اتصال لاحقة| F["همزة متوسطة<br/><span dir='rtl'>﴿سَأَلَ﴾ · ﴿أَهْوَآءَهُمْ﴾</span>"]
+    D -->|في آخرها| G["همزة متطرفة<br/><span dir='rtl'>﴿جَآءَ﴾</span>"]
+    classDef start fill:#455F51,color:#FFFFFF,stroke:#455F51,stroke-width:2px
+    classDef question fill:#F3F6F4,color:#263C31,stroke:#6F8579,stroke-width:2px
+    classDef dagger fill:#FFF7DE,color:#5B4720,stroke:#DFAF2C,stroke-width:2px
+    classDef hamza fill:#EDF5EF,color:#263C31,stroke:#4E9C42,stroke-width:2px
+    class A start
+    class B,D question
+    class C dagger
+    class E,F,G hamza
+```
+
+```{python}
+#| label: orthography-inventory
+#| output: asis
+from pathlib import Path
+import json
+import unicodedata
+
+hamza_chars = frozenset("ءأإؤئ")
+combining_hamza_chars = frozenset("ٕٔ")
+allah_form = "ٱللَّه"
+categories = (
+    ("dagger", "ألف خنجرية"),
+    ("initial", "همزة ابتدائية"),
+    ("medial", "همزة متوسطة"),
+    ("final", "همزة متطرفة"),
+)
+groups = (
+    ("العشرة الأولى: الأجزاء 1-10", range(1, 11)),
+    ("العشرة الوسطى: الأجزاء 11-20", range(11, 21)),
+    ("العشرة الأخيرة: الأجزاء 21-30", range(21, 31)),
+)
+juz_names = (
+    "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس",
+    "السابع", "الثامن", "التاسع", "العاشر", "الحادي عشر",
+    "الثاني عشر", "الثالث عشر", "الرابع عشر", "الخامس عشر",
+    "السادس عشر", "السابع عشر", "الثامن عشر", "التاسع عشر",
+    "العشرون", "الحادي والعشرون", "الثاني والعشرون",
+    "الثالث والعشرون", "الرابع والعشرون", "الخامس والعشرون",
+    "السادس والعشرون", "السابع والعشرون", "الثامن والعشرون",
+    "التاسع والعشرون", "الثلاثون",
+)
+
+
+def orthographic_units(word):
+    result = []
+    after_tatweel = False
+    for character in word:
+        if character == "ـ":
+            after_tatweel = True
+        elif unicodedata.category(character).startswith("L"):
+            result.append(character)
+            after_tatweel = False
+        elif character in combining_hamza_chars and after_tatweel:
+            result.append(character)
+            after_tatweel = False
+        elif result:
+            result[-1] += character
+    return result
+
+
+def base(cluster):
+    return cluster[0]
+
+
+def is_hamza(cluster):
+    return base(cluster) in hamza_chars or any(
+        mark in cluster for mark in combining_hamza_chars
+    )
+
+
+def letter_form(word):
+    return "".join(
+        character
+        for character in word
+        if unicodedata.category(character).startswith("L") and character != "ـ"
+    ).replace("ٱ", "ا")
+
+
+morphology_path = Path(
+    "resources/quranic-corpus/quranic-corpus-morphology-0.4.txt"
+)
+morphology_words = {}
+for line in morphology_path.read_text(encoding="utf-8").splitlines():
+    if not line.startswith("("):
+        continue
+    location, form, _, features = line.split("\t")
+    surah, ayah, word, segment = map(int, location.strip("()").split(":"))
+    morphology_words.setdefault((surah, ayah, word), []).append(
+        (segment, form, features)
+    )
+
+buckwalter_letters = frozenset("'|><&}AbptvjHxd*rzs$SDTZEgfqklmnhwyY{")
+prefixed_initial_locations = {}
+for location, segments in morphology_words.items():
+    segments.sort()
+    prefixes = [segment for segment in segments if segment[2].startswith("PREFIX|")]
+    lexical = [segment for segment in segments if not segment[2].startswith("PREFIX|")]
+    if prefixes and lexical and lexical[0][1][0] in "><'|":
+        prefixed_initial_locations[location] = sum(
+            character in buckwalter_letters
+            for _, form, _ in prefixes
+            for character in form
+        )
+
+data_dir = Path("../data")
+index = json.loads((data_dir / "ayah" / "index.json").read_text(encoding="utf-8"))
+ayah_words = []
+source_word_at = {}
+source_word_counts = {}
+for entry in index:
+    ayah = json.loads((data_dir / entry["file"]).read_text(encoding="utf-8"))
+    surah_number, ayah_number = map(int, ayah["key"].split(":"))
+    juz = int(ayah["parents"]["juz"].split(":", 1)[1])
+    words = ayah["text"].split()
+    source_word_counts[(surah_number, ayah_number)] = len(words)
+    for word_number, word in enumerate(words, 1):
+        source_word_at[(surah_number, ayah_number, word_number)] = word
+        ayah_words.append((juz, word))
+source_words = {word for _, word in ayah_words}
+
+morphology_word_counts = {}
+for surah_number, ayah_number, word_number in morphology_words:
+    key = (surah_number, ayah_number)
+    morphology_word_counts[key] = max(
+        word_number, morphology_word_counts.get(key, 0)
+    )
+
+unaligned_ayahs = {
+    key
+    for key, count in source_word_counts.items()
+    if morphology_word_counts[key] != count
+}
+assert unaligned_ayahs == {(2, 181), (8, 6), (13, 37), (37, 130), (96, 1)}
+assert {
+    location
+    for location in prefixed_initial_locations
+    if location[:2] in unaligned_ayahs
+} == {(2, 181, 5)}
+
+allah_letter_forms = {
+    "الله", "والله", "بالله", "لله", "تالله", "فالله", "اللهم",
+    "أبالله", "وتالله",
+}
+
+
+def is_allah(word):
+    return letter_form(word) in allah_letter_forms
+
+
+prefixed_initial_positions = {}
+for location, position in prefixed_initial_locations.items():
+    if location[:2] in unaligned_ayahs:
+        continue
+    word = source_word_at[location]
+    previous = prefixed_initial_positions.setdefault(word, position)
+    assert previous == position
+
+word = source_word_at[(2, 181, 6)]
+position = prefixed_initial_locations[(2, 181, 5)]
+previous = prefixed_initial_positions.setdefault(word, position)
+assert previous == position
+
+assert prefixed_initial_positions.keys() <= source_words
+assert all(
+    0 < position < len(orthographic_units(word))
+    and is_hamza(orthographic_units(word)[position])
+    for word, position in prefixed_initial_positions.items()
+)
+
+
+def word_categories(word):
+    result = {"dagger"} if "\u0670" in word or word == allah_form else set()
+    if is_allah(word):
+        result.add("dagger")
+    units = orthographic_units(word)
+    for index, unit in enumerate(units):
+        if not is_hamza(unit):
+            continue
+        if index == 0 or prefixed_initial_positions.get(word) == index:
+            result.add("initial")
+        elif index == len(units) - 1:
+            result.add("final")
+        else:
+            result.add("medial")
+    return result
+
+
+def word_key(word):
+    return unicodedata.normalize("NFC", word)
+
+
+inventory = {
+    juz: {category: [] for category, _ in categories}
+    for juz in range(1, 31)
+}
+seen = {
+    juz: {category: set() for category, _ in categories}
+    for juz in range(1, 31)
+}
+for juz, source_word in ayah_words:
+    key = word_key(source_word)
+    for category in word_categories(source_word):
+        if key not in seen[juz][category]:
+            seen[juz][category].add(key)
+            inventory[juz][category].append(source_word)
+
+assert word_categories("إِيَّاكَ") == {"initial"}
+assert word_categories("وَإِيَّاكَ") == {"initial"}
+assert word_categories("سَأَلَ") == {"medial"}
+assert word_categories("سَأَلْتُ") == {"medial"}
+assert word_categories("بَأْسَكُمْ") == {"medial"}
+assert word_categories("فُؤَادَ") == {"medial"}
+assert word_categories("لَئِنْ") == {"medial"}
+assert word_categories("بِئْسَ") == {"medial"}
+assert word_categories("وَصَّىٰ") == {"dagger"}
+assert word_categories("ٱللَّهِ") == {"dagger"}
+assert word_categories("أَهْوَآءَهُمْ") == {"initial", "medial"}
+assert word_categories("ٱلْقُرْءَانَ") == {"medial"}
+assert word_categories("يَأْتُوا۟") == {"medial"}
+assert word_categories("وَأُو۟لَٰٓئِكَ") == {"initial", "medial", "dagger"}
+assert all(
+    word in source_words
+    for juz_inventory in inventory.values()
+    for words in juz_inventory.values()
+    for word in words
+)
+assert all(
+    len(words) == len({word_key(word) for word in words})
+    for juz_inventory in inventory.values()
+    for words in juz_inventory.values()
+)
+
+lines = []
+for group_name, juz_numbers in groups:
+    lines.extend((f"## {group_name}", ""))
+    for juz in juz_numbers:
+        lines.extend((f"### الجزء {juz_names[juz - 1]}", ""))
+        for category, label in categories:
+            words = "، ".join(
+                f"[﴿{word}﴾]{{.quran}}" for word in inventory[juz][category]
+            )
+            lines.extend((f"**{label}:** {words}", ""))
+
+print("\n".join(lines))
+```

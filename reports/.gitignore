@@ -1,0 +1,6 @@
+/.quarto/
+/output/
+**/*.quarto_ipynb
+**/__pycache__/
+/.qmd2word-render-*/
+/_quarto-qmd2word-render-*

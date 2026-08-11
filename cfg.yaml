@@ -1,0 +1,16 @@
+download:
+  base_url: https://example.invalid
+sources:
+  metadata_path: /meta
+  quran_text_post_url: /text
+  quran_text_form: {quranType: uthmani, outType: txt-2}
+output:
+  data_dir: data
+  raw_dir: raw
+text:
+  type: uthmani
+  strip_bismillah_from_non_fatiha: true
+  bismillah_exempt_surahs: [1, 9, 96]
+  normal_form: NFC
+logging:
+  level: WARNING

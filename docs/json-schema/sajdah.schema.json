@@ -1,0 +1,164 @@
+{
+  "$defs": {
+    "Ayah": {
+      "additionalProperties": false,
+      "description": "A single Quranic verse — the leaf of the tree.",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "global_id": {
+          "title": "Global Id",
+          "type": "integer"
+        },
+        "sura": {
+          "title": "Sura",
+          "type": "integer"
+        },
+        "aya": {
+          "title": "Aya",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "text_raw": {
+          "title": "Text Raw",
+          "type": "string"
+        },
+        "text_clean": {
+          "title": "Text Clean",
+          "type": "string"
+        },
+        "char_count": {
+          "title": "Char Count",
+          "type": "integer"
+        },
+        "word_count": {
+          "title": "Word Count",
+          "type": "integer"
+        },
+        "sajda": {
+          "anyOf": [
+            {
+              "enum": [
+                "obligatory",
+                "recommended"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sajda"
+        },
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        },
+        "parents": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Parents",
+          "type": "object"
+        }
+      },
+      "required": [
+        "key",
+        "id",
+        "global_id",
+        "sura",
+        "aya",
+        "text",
+        "text_raw",
+        "text_clean",
+        "char_count",
+        "word_count",
+        "page",
+        "parents"
+      ],
+      "title": "Ayah",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "integer"
+    },
+    "key": {
+      "title": "Key",
+      "type": "string"
+    },
+    "ayah": {
+      "title": "Ayah",
+      "type": "string"
+    },
+    "ayah_id": {
+      "title": "Ayah Id",
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "obligatory",
+        "recommended"
+      ],
+      "title": "Type",
+      "type": "string"
+    },
+    "surah": {
+      "title": "Surah",
+      "type": "string"
+    },
+    "surah_id": {
+      "title": "Surah Id",
+      "type": "string"
+    },
+    "parent_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Parent Ids",
+      "type": "array"
+    },
+    "child_ids": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Child Ids",
+      "type": "object"
+    },
+    "ayah_data": {
+      "$ref": "#/$defs/Ayah"
+    }
+  },
+  "required": [
+    "id",
+    "key",
+    "ayah",
+    "ayah_id",
+    "type",
+    "surah",
+    "surah_id",
+    "parent_ids",
+    "ayah_data"
+  ],
+  "title": "sajdah",
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://quran-etl.local/schemas/sajdah.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}

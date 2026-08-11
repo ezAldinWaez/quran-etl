@@ -1,0 +1,33 @@
+download:
+  base_url: https://tanzil.net
+  user_agent: quran-etl/0.1 (+https://tanzil.net)
+  timeout_seconds: 30
+  max_retries: 3
+  backoff_factor: 0.5
+
+sources:
+  metadata_path: /res/text/metadata/quran-data.xml
+  # The Quran text is served by a form POST to /pub/download/index.php
+  quran_text_post_url: /pub/download/index.php
+  quran_text_form:
+    quranType: uthmani
+    outType: txt-2          # text with aya numbers: "sura|aya|text"
+    marks: "true"           # pause marks
+    sajdah: "true"          # sajdah sign (۩)
+    tatweel: "true"         # tatweel below superscript alef
+    agree: "true"           # terms of use
+
+output:
+  data_dir: data
+  raw_dir: raw
+  indent: 2
+  ensure_ascii: false
+
+text:
+  type: uthmani
+  strip_bismillah_from_non_fatiha: true
+  bismillah_exempt_surahs: [1, 9, 96]  # 1 has it as 1:1, 9 has none, 96 inlines it
+  normal_form: NFC
+
+logging:
+  level: INFO

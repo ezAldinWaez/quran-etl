@@ -1,0 +1,58 @@
+lang: ar
+
+project:
+  type: default
+  output-dir: output
+  execute-dir: project
+  render:
+    - production/*.qmd
+    - examples/*.qmd
+    - tests/*.qmd
+
+qmd2word:
+  template: resources/docx/template.docx
+  content-placeholder: "[[CONTENT]]"
+  figure-max-height-cm: 15
+  features:
+    localization: ar
+  semantic-styles:
+    quran:
+      inline: "Quran"
+  callouts:
+    callout-insight:
+      title: "نتيجة تحليلية"
+      icon-symbol: "fa-lightbulb"
+      color: "#DFAF2C"
+    callout-data-note:
+      title: "ملاحظة بيانات"
+      icon-symbol: "fa-info-circle"
+      color: "#5F86AD"
+    callout-key-takeaway:
+      title: "خلاصة"
+      icon-symbol: "fa-key"
+      color: "#17A2B8"
+
+format:
+  docx:
+    dir: rtl
+    date-format: "MMMM D, YYYY"
+    toc: false
+    toc-depth: 3
+    lof: false
+    lot: false
+    lol: false
+    number-sections: false
+    number-depth: 3
+    shift-heading-level-by: -1
+    syntax-highlighting: github
+    code-line-numbers: true
+    code-annotations: hover
+    execute:
+      eval: true
+      echo: false
+      warning: false
+      error: true
+    fig-format: png
+    fig-dpi: 600
+    keep-md: false
+    keep-ipynb: false

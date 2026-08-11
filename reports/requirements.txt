@@ -1,0 +1,9 @@
+-r requirements-qmd2word.txt
+pandas>=2.0
+matplotlib>=3.11.1
+seaborn>=0.13
+python-docx>=1.0
+pywin32>=312; platform_system == "Windows"
+PyYAML>=6.0
+tabulate>=0.9
+jupyter>=1.0

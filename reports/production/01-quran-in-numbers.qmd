@@ -1,0 +1,220 @@
+---
+title: "القرآن الكريم في أرقام"
+subtitle: "دليل بصري موجز إلى بنية المصحف"
+author: "عز الدين واعظ"
+date: today
+cover:
+  title: "القرآن الكريم في أرقام"
+  subtitle: "دليل بصري موجز إلى بنية المصحف"
+---
+
+هذا التقرير جولة سريعة في بنية القرآن الكريم كما تمثلها بيانات المشروع: سور وآيات وأجزاء وأحزاب وأرباع وصفحات ومواضع سجود. وهو مصمم للقراءة الخفيفة والرجوع السريع، لا ليكون دراسة إحصائية متخصصة.
+
+```{python}
+#| label: setup
+import json
+from pathlib import Path
+
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import pandas as pd
+import seaborn as sns
+from IPython.display import Markdown, display
+
+DATA_DIR = Path("../data")
+
+matplotlib.rcParams.update({
+    "font.family": "Noto Sans Arabic",
+    "axes.unicode_minus": False,
+})
+
+
+def load_scope(scope):
+    return [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted((DATA_DIR / scope).glob("[0-9]*.json"))
+    ]
+
+
+def show_table(frame):
+    display(Markdown(frame.to_markdown(index=False)))
+
+
+index = json.loads((DATA_DIR / "index.json").read_text(encoding="utf-8"))
+surahs = load_scope("surah")
+juzs = load_scope("juz")
+ayahs = load_scope("ayah")
+df_surah = pd.DataFrame(surahs)
+df_juz = pd.DataFrame(juzs)
+df_ayah = pd.DataFrame(ayahs)
+surah_names = {surah["id"]: surah["name_arabic"] for surah in surahs}
+
+assert len(df_surah) == 114
+assert len(df_ayah) == 6236
+assert len(df_juz) == 30
+```
+
+## بطاقة سريعة {#sec-overview}
+
+```{python}
+#| label: tbl-overview
+#| tbl-cap: "البنية العامة للقرآن الكريم في مجموعة البيانات"
+totals = index["totals"]
+overview = pd.DataFrame([
+    {"الوحدة": "السور", "العدد": f"{totals['surah_count']:,}"},
+    {"الوحدة": "الآيات", "العدد": f"{totals['ayat_count']:,}"},
+    {"الوحدة": "الأجزاء", "العدد": f"{totals['juz_count']:,}"},
+    {"الوحدة": "الأحزاب", "العدد": f"{totals['hizb_count']:,}"},
+    {"الوحدة": "الأرباع", "العدد": f"{totals['rub_count']:,}"},
+    {"الوحدة": "المنازل", "العدد": f"{totals['manzil_count']:,}"},
+    {"الوحدة": "الركوعات", "العدد": f"{totals['ruku_count']:,}"},
+    {"الوحدة": "الصفحات", "العدد": f"{totals['page_count']:,}"},
+    {"الوحدة": "سجدات التلاوة", "العدد": f"{totals['sajdah_count']:,}"},
+])
+show_table(overview)
+```
+
+::: {.callout-note}
+
+## كيف تُقرأ الأرقام؟
+
+تُحسب الكلمات بحسب الفصل بالمسافات في النص العثماني المصدر، ويشمل عدد الأحرف علامات الضبط القرآني. لذلك تُقرأ هذه الأرقام بوصفها وصفًا لطريقة تمثيل النص في مجموعة البيانات.
+
+:::
+
+## السور في نظرة واحدة {#sec-surahs}
+
+```{python}
+#| label: tbl-revelation
+#| tbl-cap: "توزيع السور حسب نوع النزول"
+revelation = (
+    df_surah["revelation_type"]
+    .value_counts()
+    .rename({"Meccan": "مكية", "Medinan": "مدنية"})
+    .rename_axis("النوع")
+    .reset_index(name="عدد السور")
+)
+show_table(revelation)
+```
+
+### أطول السور وأقصرها
+
+```{python}
+#| label: tbl-longest-surahs
+#| tbl-cap: "أطول خمس سور حسب عدد الآيات"
+longest_surahs = (
+    df_surah.nlargest(5, "ayah_count")[["id", "name_arabic", "ayah_count", "ruku_count"]]
+    .rename(columns={"id": "الرقم", "name_arabic": "السورة", "ayah_count": "الآيات", "ruku_count": "الركوعات"})
+)
+show_table(longest_surahs)
+```
+
+```{python}
+#| label: tbl-shortest-surahs
+#| tbl-cap: "أقصر خمس سور حسب عدد الآيات"
+shortest_surahs = (
+    df_surah.sort_values(["ayah_count", "id"])[["id", "name_arabic", "ayah_count", "ruku_count"]]
+    .head(5)
+    .rename(columns={"id": "الرقم", "name_arabic": "السورة", "ayah_count": "الآيات", "ruku_count": "الركوعات"})
+)
+show_table(shortest_surahs)
+```
+
+```{python}
+#| label: fig-surah-lengths
+#| fig-cap: "عدد الآيات في كل سورة مرتبة بحسب رقمها في المصحف"
+#| fig-alt: "أعمدة تمثل عدد آيات السور من الفاتحة إلى الناس، وتظهر سورة البقرة بوصفها الأطول."
+#| fig-width: 8
+#| fig-height: 4
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.bar(df_surah["id"], df_surah["ayah_count"], color="#455F51", edgecolor="white", linewidth=0.35)
+ax.set_xlabel("رقم السورة", fontsize=11)
+ax.set_ylabel("عدد الآيات", fontsize=11)
+ax.set_title("أطوال سور القرآن الكريم", fontsize=13)
+ax.xaxis.set_major_locator(ticker.MultipleLocator(10))
+sns.despine()
+plt.tight_layout()
+plt.show()
+```
+
+{{< pagebreak >}}
+
+## الآيات والكلمات {#sec-ayahs}
+
+```{python}
+#| label: tbl-ayah-stats
+#| tbl-cap: "أرقام مبسطة عن أطوال الآيات"
+ayah_stats = pd.DataFrame([
+    {"المقياس": "متوسط الكلمات في الآية", "القيمة": f"{df_ayah['word_count'].mean():.1f}"},
+    {"المقياس": "وسيط الكلمات في الآية", "القيمة": f"{df_ayah['word_count'].median():.0f}"},
+    {"المقياس": "أكبر عدد من الكلمات في آية", "القيمة": f"{df_ayah['word_count'].max():,}"},
+    {"المقياس": "متوسط الأحرف في الآية", "القيمة": f"{df_ayah['char_count'].mean():.1f}"},
+    {"المقياس": "نسبة الآيات ذات عشر كلمات أو أقل", "القيمة": f"{df_ayah['word_count'].le(10).mean() * 100:.1f}%"},
+])
+show_table(ayah_stats)
+```
+
+### أطول الآيات
+
+```{python}
+#| label: tbl-longest-ayahs
+#| tbl-cap: "أطول خمس آيات حسب عدد الكلمات"
+longest_ayahs = df_ayah.nlargest(5, "word_count")[["sura", "aya", "word_count", "char_count"]].copy()
+longest_ayahs.insert(1, "السورة", longest_ayahs["sura"].map(surah_names))
+longest_ayahs = longest_ayahs.rename(columns={"sura": "رقم السورة", "aya": "رقم الآية", "word_count": "الكلمات", "char_count": "الأحرف"})
+show_table(longest_ayahs)
+```
+
+```{python}
+#| label: fig-word-distribution
+#| fig-cap: "توزيع آيات القرآن الكريم بحسب عدد الكلمات"
+#| fig-alt: "مدرج تكراري يوضح أن معظم الآيات قصيرة نسبيًا، مع تناقص العدد كلما زاد طول الآية."
+#| fig-width: 8
+#| fig-height: 4
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.hist(df_ayah["word_count"], bins=45, color="#5F86AD", edgecolor="white", linewidth=0.4)
+median_words = df_ayah["word_count"].median()
+ax.axvline(median_words, color="#DFAF2C", linestyle="--", linewidth=1.8, label=f"الوسيط: {median_words:.0f}")
+ax.set_xlabel("عدد الكلمات في الآية", fontsize=11)
+ax.set_ylabel("عدد الآيات", fontsize=11)
+ax.set_title("أطوال الآيات بالكلمات", fontsize=13)
+ax.legend(fontsize=10)
+sns.despine()
+plt.tight_layout()
+plt.show()
+```
+
+## الأجزاء ليست متساوية في عدد الآيات {#sec-juz}
+
+يتساوى الجزء في موقعه ضمن خطة التلاوة، لكنه لا يساوي بقية الأجزاء في عدد الآيات أو الكلمات؛ لأن أطوال الآيات تختلف من موضع إلى آخر.
+
+```{python}
+#| label: tbl-juz-extremes
+#| tbl-cap: "أجزاء لافتة بحسب عدد الآيات والكلمات"
+juz_summary = []
+for juz in juzs:
+    juz_summary.append({
+        "الجزء": juz["id"],
+        "الآيات": juz["ayah_count"],
+        "الكلمات": sum(ayah["word_count"] for ayah in juz["ayahs"]),
+        "من صفحة": min(ayah["page"] for ayah in juz["ayahs"]),
+        "إلى صفحة": max(ayah["page"] for ayah in juz["ayahs"]),
+    })
+df_juz_summary = pd.DataFrame(juz_summary)
+selected_juz = pd.concat([
+    df_juz_summary.nlargest(1, "الآيات").assign(الصفة="الأكثر آيات"),
+    df_juz_summary.nsmallest(1, "الآيات").assign(الصفة="الأقل آيات"),
+    df_juz_summary.nlargest(1, "الكلمات").assign(الصفة="الأكثر كلمات"),
+    df_juz_summary.nsmallest(1, "الكلمات").assign(الصفة="الأقل كلمات"),
+], ignore_index=True)
+show_table(selected_juz[["الصفة", "الجزء", "الآيات", "الكلمات", "من صفحة", "إلى صفحة"]])
+```
+
+::: {.callout-tip}
+
+## خلاصة
+
+تقدم الأرقام خريطة سريعة للمصحف: بنية ثابتة من 114 سورة و6,236 آية، داخلها تفاوت كبير في أطوال السور والآيات والأجزاء. وللاستفادة العملية من هذه البنية في مراجعة الحفظ، يُستكمل هذا التقرير بدليل «خريطة الأجزاء لمراجعة القرآن الكريم».
+
+:::

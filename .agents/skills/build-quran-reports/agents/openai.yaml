@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Quran Reports"
+  short_description: "Render and validate Quran DOCX and PDF reports"
+  default_prompt: "Use $build-quran-reports to render and validate a repository report."

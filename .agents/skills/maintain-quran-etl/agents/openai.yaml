@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain Quran ETL"
+  short_description: "Safely evolve and verify the Quran ETL"
+  default_prompt: "Use $maintain-quran-etl to implement and verify a dataset change safely."

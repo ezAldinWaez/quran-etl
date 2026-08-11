@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "qmd2word-author": {
+      "source": "ezAldinWaez/qmd2word",
+      "ref": "v0.3.1",
+      "sourceType": "github",
+      "skillPath": "skills/qmd2word-author/SKILL.md",
+      "computedHash": "13a5704f9e4a5f3432b9372ae37602e213bcc3212efd32f303ccd18a777aba43"
+    },
+    "qmd2word-sync": {
+      "source": "ezAldinWaez/qmd2word",
+      "ref": "v0.3.1",
+      "sourceType": "github",
+      "skillPath": "skills/qmd2word-sync/SKILL.md",
+      "computedHash": "7a7a29e08484738a1c73374c1c9ecf41eaafefaaf067ccf0036b4d5876c2e9fd"
+    },
+    "quarto-authoring": {
+      "source": "posit-dev/skills",
+      "sourceType": "github",
+      "skillPath": "quarto/quarto-authoring/SKILL.md",
+      "computedHash": "a5412f889691a1e1d9a3a6ed6fa1a1706bdbd02744d8492c08f6364d9196e93b"
+    }
+  }
+}

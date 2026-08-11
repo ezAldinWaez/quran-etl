@@ -1,0 +1,161 @@
+---
+title: "خريطة الأجزاء لمراجعة القرآن الكريم"
+subtitle: "دليل عملي لمتابعة المحفوظ ربعًا بعد ربع"
+author: "عز الدين واعظ"
+date: today
+cover:
+  title: "خريطة الأجزاء لمراجعة القرآن الكريم"
+  subtitle: "دليل عملي لمتابعة المحفوظ ربعًا بعد ربع"
+---
+
+هذا الدليل يساعد حافظ القرآن الكريم على تنظيم المراجعة بحسب الأجزاء والأرباع. تعرض بطاقة كل جزء حدوده وسوره وصفحاته، ثم تقسمه إلى ثمانية أرباع يمكن مراجعتها وتقييمها واحدًا بعد الآخر.
+
+## طريقة الاستخدام
+
+1. اختر الجزء المطلوب من جدول المتابعة العام وسجل تاريخ بدء المراجعة.
+2. استحضر بداية كل ربع قبل فتح المصحف، ثم راجع الربع كاملًا.
+3. أعط أداءك درجة من خمس درجات، وسجل المواضع التي تحتاج إلى تثبيت.
+4. بعد إتمام الأرباع الثمانية، اختبر الربط بين نهاية كل ربع وبداية الربع الذي يليه.
+
+::: {.callout-note}
+
+## مقياس التقييم
+
+الدرجة المقترحة: 5 للمتقن، و4 للهفوات اليسيرة، و3 للحاجة إلى مراجعة قريبة، و2 للمواضع الضعيفة، و1 لإعادة المراجعة من البداية.
+
+:::
+
+```{python}
+#| label: setup
+import json
+from pathlib import Path
+
+import pandas as pd
+from IPython.display import Markdown, display
+
+DATA_DIR = Path("../data")
+JUZ_NAMES = (
+    "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس",
+    "السابع", "الثامن", "التاسع", "العاشر", "الحادي عشر",
+    "الثاني عشر", "الثالث عشر", "الرابع عشر", "الخامس عشر",
+    "السادس عشر", "السابع عشر", "الثامن عشر", "التاسع عشر",
+    "العشرون", "الحادي والعشرون", "الثاني والعشرون",
+    "الثالث والعشرون", "الرابع والعشرون", "الخامس والعشرون",
+    "السادس والعشرون", "السابع والعشرون", "الثامن والعشرون",
+    "التاسع والعشرون", "الثلاثون",
+)
+
+
+def load_scope(scope):
+    return [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted((DATA_DIR / scope).glob("[0-9]*.json"))
+    ]
+
+
+def show_table(frame):
+    display(Markdown(frame.to_markdown(index=False)))
+
+
+def verse_reference(ayah, surah_names):
+    return f"{surah_names[ayah['sura']]} {ayah['aya']}"
+
+
+def cue_text(ayah, word_limit=8):
+    words = ayah["text"].split()
+    cue = " ".join(words[:word_limit])
+    suffix = " …" if len(words) > word_limit else ""
+    return f"[﴿{cue}﴾]{{.quran}}{suffix}"
+
+
+def surah_spans(ayahs, surah_names):
+    spans = []
+    start = 0
+    while start < len(ayahs):
+        sura = ayahs[start]["sura"]
+        end = start
+        while end + 1 < len(ayahs) and ayahs[end + 1]["sura"] == sura:
+            end += 1
+        first = ayahs[start]["aya"]
+        last = ayahs[end]["aya"]
+        span = str(first) if first == last else f"{first}-{last}"
+        spans.append(f"{surah_names[sura]} ({span})")
+        start = end + 1
+    return "، ".join(spans)
+
+
+surahs = load_scope("surah")
+juzs = load_scope("juz")
+rubs = load_scope("rub")
+surah_names = {surah["id"]: surah["name_arabic"] for surah in surahs}
+
+assert len(juzs) == 30
+assert len(rubs) == 240
+```
+
+## جدول المتابعة العام {#sec-tracker}
+
+دوّن آخر مراجعة وموعد المراجعة القادمة، ثم انتقل إلى بطاقة الجزء لتقييم أرباعه بالتفصيل.
+
+```{python}
+#| label: tbl-review-tracker
+#| tbl-cap: "سجل مراجعة الأجزاء الثلاثين"
+tracker_rows = []
+for juz in juzs:
+    pages = [ayah["page"] for ayah in juz["ayahs"]]
+    tracker_rows.append({
+        "الجزء": juz["id"],
+        "الصفحات": f"{min(pages)}-{max(pages)}",
+        "آخر مراجعة": "",
+        "التقييم / 5": "",
+        "المراجعة القادمة": "",
+    })
+show_table(pd.DataFrame(tracker_rows))
+```
+
+{{< pagebreak >}}
+
+## بطاقات الأجزاء {#sec-juz-cards}
+
+```{python}
+#| label: juz-review-cards
+#| output: asis
+lines = []
+for position, juz in enumerate(juzs):
+    juz_id = juz["id"]
+    juz_key = f"juz:{juz_id:02d}"
+    ayahs = juz["ayahs"]
+    pages = [ayah["page"] for ayah in ayahs]
+    juz_rubs = [rub for rub in rubs if juz_key in rub["parent_ids"]]
+    assert len(juz_rubs) == 8
+    lines.extend((
+        f"### الجزء {JUZ_NAMES[juz_id - 1]}",
+        "",
+        f"**النطاق:** الصفحات {min(pages)}-{max(pages)} | **الآيات:** {juz['ayah_count']} | **الكلمات:** {sum(ayah['word_count'] for ayah in ayahs):,} | **السور:** {len({ayah['sura'] for ayah in ayahs})}",
+        "",
+        f"**سور الجزء:** {surah_spans(ayahs, surah_names)}.",
+        "",
+        f"**مفتاح البداية:** {cue_text(ayahs[0])} ({verse_reference(ayahs[0], surah_names)}).",
+        "",
+        f"**مفتاح النهاية:** {cue_text(ayahs[-1])} ({verse_reference(ayahs[-1], surah_names)}).",
+        "",
+    ))
+    for local_rub, rub in enumerate(juz_rubs, 1):
+        rub_pages = [ayah["page"] for ayah in rub["ayahs"]]
+        start = verse_reference(rub["ayahs"][0], surah_names)
+        end = verse_reference(rub["ayahs"][-1], surah_names)
+        lines.extend((
+            f"{local_rub}. **من {start} إلى {end}** | الصفحات {min(rub_pages)}-{max(rub_pages)} | التقييم: ..... / 5",
+            "",
+        ))
+    lines.extend((
+        "**تاريخ مراجعة الجزء:** ....................................",
+        "",
+        "**مواضع تحتاج إلى تثبيت:** ........................................................................................................",
+        "",
+    ))
+    if position < len(juzs) - 1:
+        lines.extend(("{{< pagebreak >}}", ""))
+
+print("\n".join(lines))
+```
