@@ -26,14 +26,14 @@ Run commands from the repository root. `reports/requirements-qmd2word.txt` and `
 git lfs install
 git lfs pull
 git submodule update --init --recursive
-python -m pip install -e ".[dev]" -r reports/requirements.txt
+python -m pip install -e ".[dev,reports]" -r reports/requirements.txt
 python -m quran_etl --clean --verify
-qmd2word render reports/production/01-quran-in-numbers.qmd --output reports/output/production/01-quran-in-numbers.docx
-qmd2word render reports/production/02-juz-review-map.qmd --output reports/output/production/02-juz-review-map.docx
-qmd2word render reports/production/03-quran-orthography.qmd --output reports/output/production/03-quran-orthography.docx
+python -m quran_etl render reports/production/01-quran-in-numbers.qmd --output reports/output/production/01-quran-in-numbers.docx
+python -m quran_etl render reports/production/02-juz-review-map.qmd --output reports/output/production/02-juz-review-map.docx
+python -m quran_etl render reports/production/03-quran-orthography.qmd --output reports/output/production/03-quran-orthography.docx
 ```
 
-The production QMD contains executable Python and must be treated as trusted code. `qmd2word render` discovers this Quarto project, honors its execution settings, applies the project template and packaged stages, validates the DOCX package, and atomically writes the explicit output path. Microsoft Word is not required to render.
+The production QMD contains executable Python and must be treated as trusted code. `quran-etl render` imports qmd2word and delegates to its typed Python API, which discovers this Quarto project, honors its execution settings, applies the project template and packaged stages, validates the DOCX package, and atomically writes the explicit output path. Microsoft Word is not required to render.
 
 ## Build and publish Quran data and reports
 
@@ -62,7 +62,7 @@ The `.quran` mapping lives under `qmd2word.semantic-styles` in `_quarto.yml` and
 The QMD project is the executable representation. A returned editor DOCX is the editorial authority for that review round. Preserve the returned file exactly and compare it with the matching QMD/project/data version in a fresh directory:
 
 ```bash
-qmd2word compare reports/production/03-quran-orthography.qmd path/to/editor-returned.docx --output-dir reports/output/comparisons/quran-orthography-iteration-1
+python -m quran_etl compare reports/production/03-quran-orthography.qmd path/to/editor-returned.docx --output-dir reports/output/comparisons/quran-orthography-iteration-1
 ```
 
 The comparison directory contains the regenerated baseline, an untouched copy of the edited DOCX, structured source context and intermediate representations, `diff.json`, `report.html`, and extracted media. The diff is descriptive evidence; it does not prescribe QMD syntax. Use the repo-local `qmd2word-sync` skill to interpret the evidence, update the appropriate QMD, code, data, or configuration, rerender, compare into another fresh directory, and record each change as applied, intentionally retained, deferred, or unsupported. Never render over the editor-returned DOCX.
@@ -78,7 +78,7 @@ The Scheherazade New font source is pinned to the official `v4.500` release as a
 The report pipeline is intentionally excluded from GitHub Actions because qmd2word is private and this project does not maintain cross-repository CI credentials. After changing qmd2word configuration, the Word template, localization feature, or report infrastructure, run the small local check:
 
 ```bash
-qmd2word render reports/tests/smoke.qmd --output reports/output/tests/smoke.docx
+python -m quran_etl render reports/tests/smoke.qmd --output reports/output/tests/smoke.docx
 ```
 
 The smoke document verifies nested-project discovery, cover injection, content transplant, Arabic RTL processing, semantic Quran styling, tables, validation, and atomic output without building Quran data or executing the production report. Production rendering also remains an explicit trusted local operation because its QMD executes code and expands to a large document.

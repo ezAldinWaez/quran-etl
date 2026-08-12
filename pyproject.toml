@@ -18,6 +18,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+reports = [
+    "qmd2word @ git+https://github.com/ezAldinWaez/qmd2word.git@v0.3.1",
+]
 dev = [
     "pytest>=8.0",
     "pytest-cov>=5.0",

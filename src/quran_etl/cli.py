@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import sys
 from pathlib import Path
+from types import ModuleType
 
 from .config import Settings
 from .download import fetch, source_provenance
@@ -16,6 +18,8 @@ from .transform import build_graph
 from .verify import verify_full, verify_min
 
 logger = logging.getLogger(__name__)
+
+REPORT_COMMANDS = frozenset({"render", "compare"})
 
 
 def _purge_json_files(root: Path, *, minified: bool | None = None) -> None:
@@ -53,6 +57,10 @@ def _build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="quran-etl",
         description="Build an LLM-friendly JSON Quran dataset from Tanzil.net.",
+        epilog=(
+            "Report commands: quran-etl render <entry.qmd> --output <file.docx>; "
+            "quran-etl compare <entry.qmd> <edited.docx> --output-dir <directory>"
+        ),
     )
     p.add_argument("--config", default="config/settings.yaml", help="Path to YAML settings.")
     download = p.add_mutually_exclusive_group()
@@ -90,7 +98,81 @@ def _build_parser() -> argparse.ArgumentParser:
     return p
 
 
+def _build_report_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="quran-etl",
+        description="Render and compare Quran ETL reports with qmd2word.",
+    )
+    commands = parser.add_subparsers(dest="report_command", required=True)
+    render_parser = commands.add_parser("render", help="Render one Quarto entry QMD to DOCX.")
+    render_parser.add_argument("entry_qmd", type=Path)
+    render_parser.add_argument("--output", type=Path, required=True)
+    compare_parser = commands.add_parser(
+        "compare",
+        help="Render a QMD baseline and compare it with an edited DOCX.",
+    )
+    compare_parser.add_argument("entry_qmd", type=Path)
+    compare_parser.add_argument("edited_docx", type=Path)
+    compare_parser.add_argument("--output-dir", type=Path, required=True)
+    return parser
+
+
+def _load_qmd2word() -> ModuleType:
+    import qmd2word
+
+    return qmd2word
+
+
+def _run_report_command(argv: list[str]) -> int:
+    args = _build_report_parser().parse_args(argv)
+    try:
+        qmd2word = _load_qmd2word()
+    except ModuleNotFoundError as exc:
+        if exc.name != "qmd2word":
+            raise
+        print(
+            "quran-etl: report commands require qmd2word; "
+            'install it with `python -m pip install -e ".[reports]"`.',
+            file=sys.stderr,
+        )
+        return 1
+
+    try:
+        if args.report_command == "render":
+            result = qmd2word.render(
+                qmd2word.RenderRequest(entry_qmd=args.entry_qmd, output=args.output)
+            )
+            payload = {
+                "entry_qmd": str(result.entry_qmd),
+                "output": str(result.output),
+                "anchored_blocks": len(result.source_map.get("blocks", [])),
+            }
+        else:
+            result = qmd2word.compare(
+                qmd2word.CompareRequest(
+                    entry_qmd=args.entry_qmd,
+                    edited_docx=args.edited_docx,
+                    output_dir=args.output_dir,
+                )
+            )
+            payload = {
+                "output_dir": str(result.output_dir),
+                "manifest": str(result.manifest),
+                "diff": str(result.diff),
+                "report": str(result.report),
+                "change_count": result.change_count,
+            }
+    except Exception as exc:
+        print(f"quran-etl {args.report_command}: {exc}", file=sys.stderr)
+        return 1
+    print(json.dumps(payload, ensure_ascii=False))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] in REPORT_COMMANDS:
+        return _run_report_command(argv)
     parser = _build_parser()
     args = parser.parse_args(argv)
     if args.skip_emit and (args.verify or args.emit_min or args.min_only or args.clean):

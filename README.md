@@ -39,7 +39,7 @@ Use `python -m quran_etl --help` for all CLI options. Pipeline settings live in 
 
 ## Reports
 
-The [`reports/`](reports/README.md) project turns the verified data into editable Arabic DOCX reports and PDF publications. It depends on `qmd2word`, a private Python package; see the report guide for access and setup.
+The [`reports/`](reports/README.md) project turns the verified data into editable Arabic DOCX reports and PDF publications. Install the private report integration with `python -m pip install -e ".[reports]"`, then use `python -m quran_etl render` and `python -m quran_etl compare`; see the report guide for the complete workflow.
 
 ## License
 

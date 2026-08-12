@@ -258,7 +258,7 @@ def render_reports(reports: list[Report]) -> None:
             [
                 sys.executable,
                 "-m",
-                "qmd2word",
+                "quran_etl",
                 "render",
                 str(report.source),
                 "--output",
