@@ -1,6 +1,6 @@
 # Schema Reference
 
-Every full JSON document in `data/` follows one of the Pydantic models in `src/quran_etl/schemas.py`. Its paired token-minimized document uses the same basename with `.min.json`; the short-key map is documented in `data/README.md`. Machine-readable JSON Schemas for the full models live in `docs/json-schema/`.
+Every JSON document in `data/` follows one of the Pydantic wire models in `src/quran_etl/schemas.py`. Paired token-minimized documents use the same basename with `.min.json`; the short-key map is documented in `data/README.md`. Machine-readable JSON Schema 2020-12 documents for full and minified items, scope indexes, root indexes, and unified Quran files live in `docs/json-schema/`. `all.schema.json` is a bundle whose root accepts any one of these public document types.
 
 This document is the human-readable companion.
 
@@ -13,7 +13,7 @@ The dataset is **denormalized for analytics**. Every range-bearing scope (surah,
 
 ## Conventions
 
-- **Surah/ayah coordinates** are always zero-padded to 3 digits when used in keys: `surah:007`, `ayah:002:255`, file path `data/ayah/002_255.json` (we use `_` instead of `:` on disk because Windows forbids `:` in filenames).
+- **Surah/ayah coordinates** are unpadded in ayah keys and IDs (`2:255`, `ayah:2:255`) but zero-padded to 3 digits in ayah filenames (`data/ayah/002_255.json`). Scope keys use their documented fixed widths, such as `surah:007`, because they are also used as stable scope identifiers. Filenames use `_` instead of `:` because Windows forbids `:` in filenames.
 - **Global ids** (`global_id` on Ayah) are 1-indexed, in canonical reading order: 1:1 → 1, 1:2 → 2, …, 114:6 → 6,236.
 - **Cross-references** use the format `"<scope>:<key>"`:
   - `surah:001`
@@ -26,6 +26,14 @@ The dataset is **denormalized for analytics**. Every range-bearing scope (surah,
   - `page:001` … `page:604`
   - `sajdah:01` … `sajdah:15`
 - **Paired files** use `<name>.json` for the full model and `<name>.min.json` for its token-minimized equivalent. Scope indexes follow the same `index.json` and `index.min.json` convention.
+
+## Machine-readable schemas
+
+- `<scope>.schema.json` and `<scope>.min.schema.json` validate full and minified item documents.
+- `scope-index.schema.json` and `scope-index.min.schema.json` validate the corresponding indexes in each scope directory.
+- `index.schema.json` and `index.min.schema.json` validate the two root manifests.
+- `quran.full.schema.json` and `quran.full.min.schema.json` validate the unified dataset documents.
+- `all.schema.json` bundles every public document schema and validates any one document type at its root.
 
 ---
 

@@ -3,22 +3,29 @@
   "description": "A single Quranic verse — the leaf of the tree.",
   "properties": {
     "key": {
+      "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
       "title": "Key",
       "type": "string"
     },
     "id": {
+      "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
       "title": "Id",
       "type": "string"
     },
     "global_id": {
+      "maximum": 6236,
+      "minimum": 1,
       "title": "Global Id",
       "type": "integer"
     },
     "sura": {
+      "maximum": 114,
+      "minimum": 1,
       "title": "Sura",
       "type": "integer"
     },
     "aya": {
+      "minimum": 1,
       "title": "Aya",
       "type": "integer"
     },
@@ -35,10 +42,12 @@
       "type": "string"
     },
     "char_count": {
+      "minimum": 0,
       "title": "Char Count",
       "type": "integer"
     },
     "word_count": {
+      "minimum": 0,
       "title": "Word Count",
       "type": "integer"
     },
@@ -55,10 +64,11 @@
           "type": "null"
         }
       ],
-      "default": null,
       "title": "Sajda"
     },
     "page": {
+      "maximum": 604,
+      "minimum": 1,
       "title": "Page",
       "type": "integer"
     },
@@ -81,12 +91,13 @@
     "text_clean",
     "char_count",
     "word_count",
+    "sajda",
     "page",
     "parents"
   ],
   "title": "ayah",
   "type": "object",
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://quran-etl.local/schemas/ayah.schema.json",
   "$comment": "quran-etl wire schema version 4"
 }

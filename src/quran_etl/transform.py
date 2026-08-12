@@ -282,6 +282,7 @@ def build_graph(
                 ayah_ids=ayah_keys,
                 parent_ids=[],
                 child_ids={},
+                ayahs=[],
             )
             if include_surahs_covered:
                 surahs_covered = sorted({s for s, _ in verses})
@@ -340,6 +341,7 @@ def build_graph(
                 parent_ids=[],
                 child_ids={},
                 juz_id="",  # filled below
+                ayahs=[],
             )
         )
 
@@ -367,31 +369,16 @@ def build_graph(
                 parent_ids=[],
                 child_ids={},
                 hizb_id="",  # filled below
+                ayahs=[],
             )
         )
 
-    # 6. Sajdah — build with a placeholder ayah_data; the real one is
-    # attached in step 9 once the ayah lookup is fully populated.
+    # 6. Sajdah
     sajdas: list[Sajdah] = []
     for rec in meta["sajdas"]:
         sid = int(rec["sura"])
         aid = int(rec["aya"])
         kid = int(rec["index"])
-        placeholder = Ayah(
-            key=_key(sid, aid),
-            id=f"ayah:{_key(sid, aid)}",
-            global_id=0,
-            sura=sid,
-            aya=aid,
-            text="",
-            text_raw="",
-            text_clean="",
-            char_count=0,
-            word_count=0,
-            sajda=rec.get("type", "recommended"),  # type: ignore[arg-type]
-            page=1,
-            parents={},
-        )
         sajdas.append(
             Sajdah(
                 id=kid,
@@ -403,7 +390,7 @@ def build_graph(
                 surah_id=f"surah:{sid:03d}",
                 parent_ids=[],
                 child_ids={},
-                ayah_data=placeholder,
+                ayah_data=ayah_by_key[_key(sid, aid)],
             )
         )
 
@@ -490,7 +477,7 @@ def build_graph(
         sajda.child_ids["ayah"] = [sajda.ayah_id]
 
     # 9. Denormalize: attach the full list of inline Ayah objects to every
-    # range-bearing node (and a single `ayah_data` for sajdah). This makes
+    # range-bearing node. This makes
     # each per-scope file self-contained for analytics — no joins, no
     # lookups, no cross-references required to access the actual Quran text.
     def _range_ayahs(start: str, end: str) -> list[Ayah]:
@@ -518,9 +505,6 @@ def build_graph(
         n.ayahs = _range_ayahs(n.start_ayah, n.end_ayah)
     for n in pages:
         n.ayahs = _range_ayahs(n.start_ayah, n.end_ayah)
-    for s in sajdas:
-        s.ayah_data = ayah_by_key[s.ayah]
-
     return {
         "ayahs": ayahs,
         "surahs": surahs,

@@ -47,9 +47,12 @@ JUZ_NAMES = (
 
 
 def load_scope(scope):
+    scope_index = json.loads(
+        (DATA_DIR / scope / "index.json").read_text(encoding="utf-8")
+    )
     return [
-        json.loads(path.read_text(encoding="utf-8"))
-        for path in sorted((DATA_DIR / scope).glob("[0-9]*.json"))
+        json.loads((DATA_DIR / entry["file"]).read_text(encoding="utf-8"))
+        for entry in scope_index
     ]
 
 

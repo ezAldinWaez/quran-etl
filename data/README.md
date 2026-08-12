@@ -47,7 +47,7 @@ full_juz = json.loads((DATA / "juz" / "01.json").read_text(encoding="utf-8"))
 min_juz = json.loads((DATA / "juz" / "01.min.json").read_text(encoding="utf-8"))
 ```
 
-The full models are documented in [`docs/SCHEMA.md`](../docs/SCHEMA.md) and machine-readable schemas live under [`docs/json-schema/`](../docs/json-schema/).
+The full and minified models, indexes, and unified files are documented in [`docs/SCHEMA.md`](../docs/SCHEMA.md) and have machine-readable JSON Schema 2020-12 documents under [`docs/json-schema/`](../docs/json-schema/).
 
 ## Minified key map
 

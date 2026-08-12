@@ -1,0 +1,177 @@
+{
+  "$defs": {
+    "MinAyah": {
+      "additionalProperties": false,
+      "properties": {
+        "k": {
+          "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "t": {
+          "title": "T",
+          "type": "string"
+        },
+        "tc": {
+          "title": "Tc",
+          "type": "string"
+        },
+        "sj": {
+          "anyOf": [
+            {
+              "enum": [
+                "o",
+                "r"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sj"
+        },
+        "p": {
+          "maximum": 604,
+          "minimum": 1,
+          "title": "P",
+          "type": "integer"
+        },
+        "ps": {
+          "$ref": "#/$defs/MinAyahParents"
+        }
+      },
+      "required": [
+        "k",
+        "t",
+        "tc",
+        "sj",
+        "p",
+        "ps"
+      ],
+      "title": "MinAyah",
+      "type": "object"
+    },
+    "MinAyahParents": {
+      "additionalProperties": false,
+      "properties": {
+        "s": {
+          "title": "S",
+          "type": "string"
+        },
+        "j": {
+          "title": "J",
+          "type": "string"
+        },
+        "m": {
+          "title": "M",
+          "type": "string"
+        },
+        "r": {
+          "title": "R",
+          "type": "string"
+        },
+        "h": {
+          "title": "H",
+          "type": "string"
+        },
+        "q": {
+          "title": "Q",
+          "type": "string"
+        },
+        "p": {
+          "title": "P",
+          "type": "string"
+        }
+      },
+      "required": [
+        "s",
+        "j",
+        "m",
+        "r",
+        "h",
+        "q",
+        "p"
+      ],
+      "title": "MinAyahParents",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "i": {
+      "maximum": 114,
+      "minimum": 1,
+      "title": "I",
+      "type": "integer"
+    },
+    "k": {
+      "pattern": "^surah:[0-9]{3}$",
+      "title": "K",
+      "type": "string"
+    },
+    "na": {
+      "title": "Na",
+      "type": "string"
+    },
+    "nt": {
+      "title": "Nt",
+      "type": "string"
+    },
+    "ne": {
+      "title": "Ne",
+      "type": "string"
+    },
+    "rt": {
+      "enum": [
+        "Meccan",
+        "Medinan"
+      ],
+      "title": "Rt",
+      "type": "string"
+    },
+    "ac": {
+      "minimum": 1,
+      "title": "Ac",
+      "type": "integer"
+    },
+    "rc": {
+      "minimum": 0,
+      "title": "Rc",
+      "type": "integer"
+    },
+    "sa": {
+      "title": "Sa",
+      "type": "string"
+    },
+    "ea": {
+      "title": "Ea",
+      "type": "string"
+    },
+    "a": {
+      "items": {
+        "$ref": "#/$defs/MinAyah"
+      },
+      "title": "A",
+      "type": "array"
+    }
+  },
+  "required": [
+    "i",
+    "k",
+    "na",
+    "nt",
+    "ne",
+    "rt",
+    "ac",
+    "rc",
+    "sa",
+    "ea",
+    "a"
+  ],
+  "title": "surah-min",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/surah.min.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}

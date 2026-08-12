@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "MinAyahIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "k": {
+          "title": "K",
+          "type": "string"
+        },
+        "f": {
+          "title": "F",
+          "type": "string"
+        }
+      },
+      "required": [
+        "k",
+        "f"
+      ],
+      "title": "MinAyahIndexEntry",
+      "type": "object"
+    },
+    "MinRangeIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "title": "K",
+          "type": "string"
+        },
+        "f": {
+          "title": "F",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "title": "Ac",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "f",
+        "sa",
+        "ea",
+        "ac"
+      ],
+      "title": "MinRangeIndexEntry",
+      "type": "object"
+    },
+    "MinSajdahIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "title": "K",
+          "type": "string"
+        },
+        "f": {
+          "title": "F",
+          "type": "string"
+        },
+        "ay": {
+          "title": "Ay",
+          "type": "string"
+        },
+        "t": {
+          "enum": [
+            "o",
+            "r"
+          ],
+          "title": "T",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "f",
+        "ay",
+        "t"
+      ],
+      "title": "MinSajdahIndexEntry",
+      "type": "object"
+    }
+  },
+  "anyOf": [
+    {
+      "items": {
+        "$ref": "#/$defs/MinAyahIndexEntry"
+      },
+      "type": "array"
+    },
+    {
+      "items": {
+        "$ref": "#/$defs/MinRangeIndexEntry"
+      },
+      "type": "array"
+    },
+    {
+      "items": {
+        "$ref": "#/$defs/MinSajdahIndexEntry"
+      },
+      "type": "array"
+    }
+  ],
+  "title": "scope-index-min",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/scope-index.min.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}

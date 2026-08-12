@@ -1,30 +1,37 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://quran-etl.local/schemas/all.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/all.schema.json",
   "$comment": "quran-etl wire schema version 4",
-  "title": "quran-etl bundle",
-  "definitions": {
+  "title": "quran-etl public document bundle",
+  "$defs": {
     "ayah": {
       "additionalProperties": false,
       "description": "A single Quranic verse — the leaf of the tree.",
       "properties": {
         "key": {
+          "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
           "title": "Key",
           "type": "string"
         },
         "id": {
+          "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
           "title": "Id",
           "type": "string"
         },
         "global_id": {
+          "maximum": 6236,
+          "minimum": 1,
           "title": "Global Id",
           "type": "integer"
         },
         "sura": {
+          "maximum": 114,
+          "minimum": 1,
           "title": "Sura",
           "type": "integer"
         },
         "aya": {
+          "minimum": 1,
           "title": "Aya",
           "type": "integer"
         },
@@ -41,10 +48,12 @@
           "type": "string"
         },
         "char_count": {
+          "minimum": 0,
           "title": "Char Count",
           "type": "integer"
         },
         "word_count": {
+          "minimum": 0,
           "title": "Word Count",
           "type": "integer"
         },
@@ -61,10 +70,11 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Sajda"
         },
         "page": {
+          "maximum": 604,
+          "minimum": 1,
           "title": "Page",
           "type": "integer"
         },
@@ -87,12 +97,13 @@
         "text_clean",
         "char_count",
         "word_count",
+        "sajda",
         "page",
         "parents"
       ],
       "title": "ayah",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/ayah.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -103,22 +114,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -135,10 +153,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -155,10 +175,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -181,6 +202,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -191,10 +213,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 114,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^surah:[0-9]{3}$",
           "title": "Key",
           "type": "string"
         },
@@ -211,18 +236,26 @@
           "type": "string"
         },
         "revelation_type": {
+          "enum": [
+            "Meccan",
+            "Medinan"
+          ],
           "title": "Revelation Type",
           "type": "string"
         },
         "revelation_order": {
+          "maximum": 114,
+          "minimum": 1,
           "title": "Revelation Order",
           "type": "integer"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
         "ruku_count": {
+          "minimum": 0,
           "title": "Ruku Count",
           "type": "integer"
         },
@@ -284,11 +317,13 @@
         "start_ayah",
         "end_ayah",
         "ayah_ids",
-        "parent_ids"
+        "parent_ids",
+        "child_ids",
+        "ayahs"
       ],
       "title": "surah",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/surah.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -299,22 +334,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -331,10 +373,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -351,10 +395,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -377,6 +422,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -387,10 +433,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 30,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^juz:[0-9]{2}$",
           "title": "Key",
           "type": "string"
         },
@@ -403,6 +452,7 @@
           "type": "string"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
@@ -453,11 +503,13 @@
         "ayah_count",
         "ayah_ids",
         "parent_ids",
-        "surahs_covered"
+        "child_ids",
+        "surahs_covered",
+        "ayahs"
       ],
       "title": "juz",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/juz.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -468,22 +520,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -500,10 +559,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -520,10 +581,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -546,6 +608,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -556,10 +619,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 7,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^manzil:[0-9]{2}$",
           "title": "Key",
           "type": "string"
         },
@@ -572,6 +638,7 @@
           "type": "string"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
@@ -622,11 +689,13 @@
         "ayah_count",
         "ayah_ids",
         "parent_ids",
-        "surahs_covered"
+        "child_ids",
+        "surahs_covered",
+        "ayahs"
       ],
       "title": "manzil",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/manzil.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -637,22 +706,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -669,10 +745,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -689,10 +767,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -715,6 +794,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -725,10 +805,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 60,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^hizb:[0-9]{2}$",
           "title": "Key",
           "type": "string"
         },
@@ -741,6 +824,7 @@
           "type": "string"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
@@ -788,11 +872,13 @@
         "ayah_count",
         "ayah_ids",
         "parent_ids",
-        "juz_id"
+        "child_ids",
+        "juz_id",
+        "ayahs"
       ],
       "title": "hizb",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/hizb.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -803,22 +889,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -835,10 +928,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -855,10 +950,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -881,6 +977,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -891,10 +988,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 240,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^rub:[0-9]{3}$",
           "title": "Key",
           "type": "string"
         },
@@ -907,6 +1007,7 @@
           "type": "string"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
@@ -954,11 +1055,13 @@
         "ayah_count",
         "ayah_ids",
         "parent_ids",
-        "hizb_id"
+        "child_ids",
+        "hizb_id",
+        "ayahs"
       ],
       "title": "rub",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/rub.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -969,22 +1072,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -1001,10 +1111,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -1021,10 +1133,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -1047,6 +1160,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -1057,10 +1171,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 556,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^ruku:[0-9]{3}$",
           "title": "Key",
           "type": "string"
         },
@@ -1073,6 +1190,7 @@
           "type": "string"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
@@ -1124,12 +1242,14 @@
         "ayah_count",
         "ayah_ids",
         "parent_ids",
+        "child_ids",
         "surah",
-        "surah_id"
+        "surah_id",
+        "ayahs"
       ],
       "title": "ruku",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/ruku.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -1140,22 +1260,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -1172,10 +1299,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -1192,10 +1321,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -1218,6 +1348,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -1228,10 +1359,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 604,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^page:[0-9]{3}$",
           "title": "Key",
           "type": "string"
         },
@@ -1244,6 +1378,7 @@
           "type": "string"
         },
         "ayah_count": {
+          "minimum": 1,
           "title": "Ayah Count",
           "type": "integer"
         },
@@ -1286,11 +1421,13 @@
         "end_ayah",
         "ayah_count",
         "ayah_ids",
-        "parent_ids"
+        "parent_ids",
+        "child_ids",
+        "ayahs"
       ],
       "title": "page",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/page.schema.json",
       "$comment": "quran-etl wire schema version 4"
     },
@@ -1301,22 +1438,29 @@
           "description": "A single Quranic verse — the leaf of the tree.",
           "properties": {
             "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Key",
               "type": "string"
             },
             "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
               "title": "Id",
               "type": "string"
             },
             "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
               "title": "Global Id",
               "type": "integer"
             },
             "sura": {
+              "maximum": 114,
+              "minimum": 1,
               "title": "Sura",
               "type": "integer"
             },
             "aya": {
+              "minimum": 1,
               "title": "Aya",
               "type": "integer"
             },
@@ -1333,10 +1477,12 @@
               "type": "string"
             },
             "char_count": {
+              "minimum": 0,
               "title": "Char Count",
               "type": "integer"
             },
             "word_count": {
+              "minimum": 0,
               "title": "Word Count",
               "type": "integer"
             },
@@ -1353,10 +1499,11 @@
                   "type": "null"
                 }
               ],
-              "default": null,
               "title": "Sajda"
             },
             "page": {
+              "maximum": 604,
+              "minimum": 1,
               "title": "Page",
               "type": "integer"
             },
@@ -1379,6 +1526,7 @@
             "text_clean",
             "char_count",
             "word_count",
+            "sajda",
             "page",
             "parents"
           ],
@@ -1389,10 +1537,13 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "maximum": 15,
+          "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "key": {
+          "pattern": "^sajdah:[0-9]{2}$",
           "title": "Key",
           "type": "string"
         },
@@ -1450,13 +1601,3647 @@
         "surah",
         "surah_id",
         "parent_ids",
+        "child_ids",
         "ayah_data"
       ],
       "title": "sajdah",
       "type": "object",
-      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "https://quran-etl.local/schemas/sajdah.schema.json",
       "$comment": "quran-etl wire schema version 4"
+    },
+    "ayah-min": {
+      "$defs": {
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "k": {
+          "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "t": {
+          "title": "T",
+          "type": "string"
+        },
+        "tc": {
+          "title": "Tc",
+          "type": "string"
+        },
+        "sj": {
+          "anyOf": [
+            {
+              "enum": [
+                "o",
+                "r"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sj"
+        },
+        "p": {
+          "maximum": 604,
+          "minimum": 1,
+          "title": "P",
+          "type": "integer"
+        },
+        "ps": {
+          "$ref": "#/$defs/MinAyahParents"
+        }
+      },
+      "required": [
+        "k",
+        "t",
+        "tc",
+        "sj",
+        "p",
+        "ps"
+      ],
+      "title": "ayah-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/ayah.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "surah-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "maximum": 114,
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^surah:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "na": {
+          "title": "Na",
+          "type": "string"
+        },
+        "nt": {
+          "title": "Nt",
+          "type": "string"
+        },
+        "ne": {
+          "title": "Ne",
+          "type": "string"
+        },
+        "rt": {
+          "enum": [
+            "Meccan",
+            "Medinan"
+          ],
+          "title": "Rt",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "rc": {
+          "minimum": 0,
+          "title": "Rc",
+          "type": "integer"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "na",
+        "nt",
+        "ne",
+        "rt",
+        "ac",
+        "rc",
+        "sa",
+        "ea",
+        "a"
+      ],
+      "title": "surah-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/surah.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "juz-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^juz:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "sc": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sc",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "sc"
+      ],
+      "title": "juz-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/juz.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "manzil-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^manzil:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "sc": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sc",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "sc"
+      ],
+      "title": "manzil-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/manzil.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "hizb-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^hizb:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "ji": {
+          "title": "Ji",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "ji"
+      ],
+      "title": "hizb-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/hizb.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "rub-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^rub:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "hi": {
+          "title": "Hi",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "hi"
+      ],
+      "title": "rub-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/rub.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "ruku-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^ruku:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "sh": {
+          "title": "Sh",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "sh"
+      ],
+      "title": "ruku-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/ruku.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "page-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^page:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a"
+      ],
+      "title": "page-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/page.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "sajdah-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "maximum": 15,
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^sajdah:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "ay": {
+          "title": "Ay",
+          "type": "string"
+        },
+        "t": {
+          "enum": [
+            "o",
+            "r"
+          ],
+          "title": "T",
+          "type": "string"
+        },
+        "sh": {
+          "title": "Sh",
+          "type": "string"
+        },
+        "ad": {
+          "$ref": "#/$defs/MinAyah"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "ay",
+        "t",
+        "sh",
+        "ad"
+      ],
+      "title": "sajdah-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/sajdah.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "scope-index": {
+      "$defs": {
+        "AyahIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "key": {
+              "title": "Key",
+              "type": "string"
+            },
+            "id": {
+              "title": "Id",
+              "type": "string"
+            },
+            "sura": {
+              "title": "Sura",
+              "type": "integer"
+            },
+            "aya": {
+              "title": "Aya",
+              "type": "integer"
+            },
+            "file": {
+              "title": "File",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "id",
+            "sura",
+            "aya",
+            "file"
+          ],
+          "title": "AyahIndexEntry",
+          "type": "object"
+        },
+        "RangeIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "title": "Key",
+              "type": "string"
+            },
+            "file": {
+              "title": "File",
+              "type": "string"
+            },
+            "start": {
+              "title": "Start",
+              "type": "string"
+            },
+            "end": {
+              "title": "End",
+              "type": "string"
+            },
+            "ayah_count": {
+              "title": "Ayah Count",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "file",
+            "start",
+            "end",
+            "ayah_count"
+          ],
+          "title": "RangeIndexEntry",
+          "type": "object"
+        },
+        "SajdahIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "title": "Key",
+              "type": "string"
+            },
+            "file": {
+              "title": "File",
+              "type": "string"
+            },
+            "ayah": {
+              "title": "Ayah",
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "obligatory",
+                "recommended"
+              ],
+              "title": "Type",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "file",
+            "ayah",
+            "type"
+          ],
+          "title": "SajdahIndexEntry",
+          "type": "object"
+        },
+        "SurahIndexChildren": {
+          "additionalProperties": false,
+          "properties": {
+            "ayah_count": {
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ruku_count": {
+              "title": "Ruku Count",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ayah_count",
+            "ruku_count"
+          ],
+          "title": "SurahIndexChildren",
+          "type": "object"
+        },
+        "SurahIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "title": "Key",
+              "type": "string"
+            },
+            "name_arabic": {
+              "title": "Name Arabic",
+              "type": "string"
+            },
+            "name_transliteration": {
+              "title": "Name Transliteration",
+              "type": "string"
+            },
+            "name_english": {
+              "title": "Name English",
+              "type": "string"
+            },
+            "revelation_type": {
+              "enum": [
+                "Meccan",
+                "Medinan"
+              ],
+              "title": "Revelation Type",
+              "type": "string"
+            },
+            "revelation_order": {
+              "title": "Revelation Order",
+              "type": "integer"
+            },
+            "ayah_count": {
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ruku_count": {
+              "title": "Ruku Count",
+              "type": "integer"
+            },
+            "start": {
+              "title": "Start",
+              "type": "string"
+            },
+            "end": {
+              "title": "End",
+              "type": "string"
+            },
+            "parents": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parents",
+              "type": "array"
+            },
+            "children": {
+              "$ref": "#/$defs/SurahIndexChildren"
+            },
+            "file": {
+              "title": "File",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "name_arabic",
+            "name_transliteration",
+            "name_english",
+            "revelation_type",
+            "revelation_order",
+            "ayah_count",
+            "ruku_count",
+            "start",
+            "end",
+            "parents",
+            "children",
+            "file"
+          ],
+          "title": "SurahIndexEntry",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/SurahIndexEntry"
+          },
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/AyahIndexEntry"
+          },
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/RangeIndexEntry"
+          },
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/SajdahIndexEntry"
+          },
+          "type": "array"
+        }
+      ],
+      "title": "scope-index",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/scope-index.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "scope-index-min": {
+      "$defs": {
+        "MinAyahIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "title": "K",
+              "type": "string"
+            },
+            "f": {
+              "title": "F",
+              "type": "string"
+            }
+          },
+          "required": [
+            "k",
+            "f"
+          ],
+          "title": "MinAyahIndexEntry",
+          "type": "object"
+        },
+        "MinRangeIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "title": "K",
+              "type": "string"
+            },
+            "f": {
+              "title": "F",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "title": "Ac",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "f",
+            "sa",
+            "ea",
+            "ac"
+          ],
+          "title": "MinRangeIndexEntry",
+          "type": "object"
+        },
+        "MinSajdahIndexEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "title": "K",
+              "type": "string"
+            },
+            "f": {
+              "title": "F",
+              "type": "string"
+            },
+            "ay": {
+              "title": "Ay",
+              "type": "string"
+            },
+            "t": {
+              "enum": [
+                "o",
+                "r"
+              ],
+              "title": "T",
+              "type": "string"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "f",
+            "ay",
+            "t"
+          ],
+          "title": "MinSajdahIndexEntry",
+          "type": "object"
+        }
+      },
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/MinAyahIndexEntry"
+          },
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/MinRangeIndexEntry"
+          },
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/MinSajdahIndexEntry"
+          },
+          "type": "array"
+        }
+      ],
+      "title": "scope-index-min",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/scope-index.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "index": {
+      "$defs": {
+        "SourceMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "title": "Source",
+              "type": "string"
+            },
+            "text_type": {
+              "title": "Text Type",
+              "type": "string"
+            },
+            "ayat_count": {
+              "title": "Ayat Count",
+              "type": "integer"
+            },
+            "surah_count": {
+              "title": "Surah Count",
+              "type": "integer"
+            },
+            "juz_count": {
+              "title": "Juz Count",
+              "type": "integer"
+            },
+            "manzil_count": {
+              "title": "Manzil Count",
+              "type": "integer"
+            },
+            "ruku_count": {
+              "title": "Ruku Count",
+              "type": "integer"
+            },
+            "hizb_count": {
+              "title": "Hizb Count",
+              "type": "integer"
+            },
+            "rub_count": {
+              "title": "Rub Count",
+              "type": "integer"
+            },
+            "page_count": {
+              "title": "Page Count",
+              "type": "integer"
+            },
+            "sajdah_count": {
+              "title": "Sajdah Count",
+              "type": "integer"
+            },
+            "generated_at": {
+              "title": "Generated At",
+              "type": "string"
+            },
+            "schema_version": {
+              "const": 4,
+              "title": "Schema Version",
+              "type": "integer"
+            },
+            "provenance": {
+              "additionalProperties": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "title": "Provenance",
+              "type": "object"
+            }
+          },
+          "required": [
+            "source",
+            "text_type",
+            "ayat_count",
+            "surah_count",
+            "juz_count",
+            "manzil_count",
+            "ruku_count",
+            "hizb_count",
+            "rub_count",
+            "page_count",
+            "sajdah_count",
+            "generated_at",
+            "schema_version",
+            "provenance"
+          ],
+          "title": "SourceMetadata",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": 4,
+          "title": "Version",
+          "type": "integer"
+        },
+        "generated_at": {
+          "title": "Generated At",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Scopes",
+          "type": "object"
+        },
+        "totals": {
+          "$ref": "#/$defs/SourceMetadata"
+        }
+      },
+      "required": [
+        "version",
+        "generated_at",
+        "scopes",
+        "totals"
+      ],
+      "title": "index",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/index.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "index-min": {
+      "$defs": {
+        "MinSourceMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "src": {
+              "title": "Src",
+              "type": "string"
+            },
+            "tt": {
+              "title": "Tt",
+              "type": "string"
+            },
+            "ac": {
+              "title": "Ac",
+              "type": "integer"
+            },
+            "sc": {
+              "title": "Sc",
+              "type": "integer"
+            },
+            "jc": {
+              "title": "Jc",
+              "type": "integer"
+            },
+            "mnc": {
+              "title": "Mnc",
+              "type": "integer"
+            },
+            "rc": {
+              "title": "Rc",
+              "type": "integer"
+            },
+            "hc": {
+              "title": "Hc",
+              "type": "integer"
+            },
+            "rbc": {
+              "title": "Rbc",
+              "type": "integer"
+            },
+            "pc": {
+              "title": "Pc",
+              "type": "integer"
+            },
+            "sac": {
+              "title": "Sac",
+              "type": "integer"
+            },
+            "ga": {
+              "title": "Ga",
+              "type": "string"
+            },
+            "sv": {
+              "const": 4,
+              "title": "Sv",
+              "type": "integer"
+            },
+            "sp": {
+              "additionalProperties": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "title": "Sp",
+              "type": "object"
+            }
+          },
+          "required": [
+            "src",
+            "tt",
+            "ac",
+            "sc",
+            "jc",
+            "mnc",
+            "rc",
+            "hc",
+            "rbc",
+            "pc",
+            "sac",
+            "ga",
+            "sv",
+            "sp"
+          ],
+          "title": "MinSourceMetadata",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "const": 4,
+          "title": "V",
+          "type": "integer"
+        },
+        "ga": {
+          "title": "Ga",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Scopes",
+          "type": "object"
+        },
+        "totals": {
+          "$ref": "#/$defs/MinSourceMetadata"
+        }
+      },
+      "required": [
+        "v",
+        "ga",
+        "scopes",
+        "totals"
+      ],
+      "title": "index-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/index.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "quran-full": {
+      "$defs": {
+        "Ayah": {
+          "additionalProperties": false,
+          "description": "A single Quranic verse — the leaf of the tree.",
+          "properties": {
+            "key": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "id": {
+              "pattern": "^ayah:[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "Id",
+              "type": "string"
+            },
+            "global_id": {
+              "maximum": 6236,
+              "minimum": 1,
+              "title": "Global Id",
+              "type": "integer"
+            },
+            "sura": {
+              "maximum": 114,
+              "minimum": 1,
+              "title": "Sura",
+              "type": "integer"
+            },
+            "aya": {
+              "minimum": 1,
+              "title": "Aya",
+              "type": "integer"
+            },
+            "text": {
+              "title": "Text",
+              "type": "string"
+            },
+            "text_raw": {
+              "title": "Text Raw",
+              "type": "string"
+            },
+            "text_clean": {
+              "title": "Text Clean",
+              "type": "string"
+            },
+            "char_count": {
+              "minimum": 0,
+              "title": "Char Count",
+              "type": "integer"
+            },
+            "word_count": {
+              "minimum": 0,
+              "title": "Word Count",
+              "type": "integer"
+            },
+            "sajda": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "obligatory",
+                    "recommended"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sajda"
+            },
+            "page": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "Page",
+              "type": "integer"
+            },
+            "parents": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "title": "Parents",
+              "type": "object"
+            }
+          },
+          "required": [
+            "key",
+            "id",
+            "global_id",
+            "sura",
+            "aya",
+            "text",
+            "text_raw",
+            "text_clean",
+            "char_count",
+            "word_count",
+            "sajda",
+            "page",
+            "parents"
+          ],
+          "title": "Ayah",
+          "type": "object"
+        },
+        "Hizb": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 60,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^hizb:[0-9]{2}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "juz_id": {
+              "title": "Juz Id",
+              "type": "string"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "start_ayah",
+            "end_ayah",
+            "ayah_count",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "juz_id",
+            "ayahs"
+          ],
+          "title": "Hizb",
+          "type": "object"
+        },
+        "Juz": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 30,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^juz:[0-9]{2}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "surahs_covered": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Surahs Covered",
+              "type": "array"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "start_ayah",
+            "end_ayah",
+            "ayah_count",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "surahs_covered",
+            "ayahs"
+          ],
+          "title": "Juz",
+          "type": "object"
+        },
+        "Manzil": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 7,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^manzil:[0-9]{2}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "surahs_covered": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Surahs Covered",
+              "type": "array"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "start_ayah",
+            "end_ayah",
+            "ayah_count",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "surahs_covered",
+            "ayahs"
+          ],
+          "title": "Manzil",
+          "type": "object"
+        },
+        "Page": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^page:[0-9]{3}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "start_ayah",
+            "end_ayah",
+            "ayah_count",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "ayahs"
+          ],
+          "title": "Page",
+          "type": "object"
+        },
+        "Rub": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 240,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^rub:[0-9]{3}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "hizb_id": {
+              "title": "Hizb Id",
+              "type": "string"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "start_ayah",
+            "end_ayah",
+            "ayah_count",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "hizb_id",
+            "ayahs"
+          ],
+          "title": "Rub",
+          "type": "object"
+        },
+        "Ruku": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 556,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^ruku:[0-9]{3}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "surah": {
+              "title": "Surah",
+              "type": "string"
+            },
+            "surah_id": {
+              "title": "Surah Id",
+              "type": "string"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "start_ayah",
+            "end_ayah",
+            "ayah_count",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "surah",
+            "surah_id",
+            "ayahs"
+          ],
+          "title": "Ruku",
+          "type": "object"
+        },
+        "Sajdah": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 15,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^sajdah:[0-9]{2}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "ayah": {
+              "title": "Ayah",
+              "type": "string"
+            },
+            "ayah_id": {
+              "title": "Ayah Id",
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "obligatory",
+                "recommended"
+              ],
+              "title": "Type",
+              "type": "string"
+            },
+            "surah": {
+              "title": "Surah",
+              "type": "string"
+            },
+            "surah_id": {
+              "title": "Surah Id",
+              "type": "string"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "ayah_data": {
+              "$ref": "#/$defs/Ayah"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "ayah",
+            "ayah_id",
+            "type",
+            "surah",
+            "surah_id",
+            "parent_ids",
+            "child_ids",
+            "ayah_data"
+          ],
+          "title": "Sajdah",
+          "type": "object"
+        },
+        "SourceMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "title": "Source",
+              "type": "string"
+            },
+            "text_type": {
+              "title": "Text Type",
+              "type": "string"
+            },
+            "ayat_count": {
+              "title": "Ayat Count",
+              "type": "integer"
+            },
+            "surah_count": {
+              "title": "Surah Count",
+              "type": "integer"
+            },
+            "juz_count": {
+              "title": "Juz Count",
+              "type": "integer"
+            },
+            "manzil_count": {
+              "title": "Manzil Count",
+              "type": "integer"
+            },
+            "ruku_count": {
+              "title": "Ruku Count",
+              "type": "integer"
+            },
+            "hizb_count": {
+              "title": "Hizb Count",
+              "type": "integer"
+            },
+            "rub_count": {
+              "title": "Rub Count",
+              "type": "integer"
+            },
+            "page_count": {
+              "title": "Page Count",
+              "type": "integer"
+            },
+            "sajdah_count": {
+              "title": "Sajdah Count",
+              "type": "integer"
+            },
+            "generated_at": {
+              "title": "Generated At",
+              "type": "string"
+            },
+            "schema_version": {
+              "const": 4,
+              "title": "Schema Version",
+              "type": "integer"
+            },
+            "provenance": {
+              "additionalProperties": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "title": "Provenance",
+              "type": "object"
+            }
+          },
+          "required": [
+            "source",
+            "text_type",
+            "ayat_count",
+            "surah_count",
+            "juz_count",
+            "manzil_count",
+            "ruku_count",
+            "hizb_count",
+            "rub_count",
+            "page_count",
+            "sajdah_count",
+            "generated_at",
+            "schema_version",
+            "provenance"
+          ],
+          "title": "SourceMetadata",
+          "type": "object"
+        },
+        "Surah": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "maximum": 114,
+              "minimum": 1,
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "pattern": "^surah:[0-9]{3}$",
+              "title": "Key",
+              "type": "string"
+            },
+            "name_arabic": {
+              "title": "Name Arabic",
+              "type": "string"
+            },
+            "name_transliteration": {
+              "title": "Name Transliteration",
+              "type": "string"
+            },
+            "name_english": {
+              "title": "Name English",
+              "type": "string"
+            },
+            "revelation_type": {
+              "enum": [
+                "Meccan",
+                "Medinan"
+              ],
+              "title": "Revelation Type",
+              "type": "string"
+            },
+            "revelation_order": {
+              "maximum": 114,
+              "minimum": 1,
+              "title": "Revelation Order",
+              "type": "integer"
+            },
+            "ayah_count": {
+              "minimum": 1,
+              "title": "Ayah Count",
+              "type": "integer"
+            },
+            "ruku_count": {
+              "minimum": 0,
+              "title": "Ruku Count",
+              "type": "integer"
+            },
+            "bismillah_pretext": {
+              "title": "Bismillah Pretext",
+              "type": "boolean"
+            },
+            "start_ayah": {
+              "title": "Start Ayah",
+              "type": "string"
+            },
+            "end_ayah": {
+              "title": "End Ayah",
+              "type": "string"
+            },
+            "ayah_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Ayah Ids",
+              "type": "array"
+            },
+            "parent_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Parent Ids",
+              "type": "array"
+            },
+            "child_ids": {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "title": "Child Ids",
+              "type": "object"
+            },
+            "ayahs": {
+              "items": {
+                "$ref": "#/$defs/Ayah"
+              },
+              "title": "Ayahs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "name_arabic",
+            "name_transliteration",
+            "name_english",
+            "revelation_type",
+            "revelation_order",
+            "ayah_count",
+            "ruku_count",
+            "bismillah_pretext",
+            "start_ayah",
+            "end_ayah",
+            "ayah_ids",
+            "parent_ids",
+            "child_ids",
+            "ayahs"
+          ],
+          "title": "Surah",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "meta": {
+          "$ref": "#/$defs/SourceMetadata"
+        },
+        "surahs": {
+          "items": {
+            "$ref": "#/$defs/Surah"
+          },
+          "title": "Surahs",
+          "type": "array"
+        },
+        "juz": {
+          "items": {
+            "$ref": "#/$defs/Juz"
+          },
+          "title": "Juz",
+          "type": "array"
+        },
+        "manzil": {
+          "items": {
+            "$ref": "#/$defs/Manzil"
+          },
+          "title": "Manzil",
+          "type": "array"
+        },
+        "ruku": {
+          "items": {
+            "$ref": "#/$defs/Ruku"
+          },
+          "title": "Ruku",
+          "type": "array"
+        },
+        "hizb": {
+          "items": {
+            "$ref": "#/$defs/Hizb"
+          },
+          "title": "Hizb",
+          "type": "array"
+        },
+        "rub": {
+          "items": {
+            "$ref": "#/$defs/Rub"
+          },
+          "title": "Rub",
+          "type": "array"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/$defs/Page"
+          },
+          "title": "Pages",
+          "type": "array"
+        },
+        "sajdah": {
+          "items": {
+            "$ref": "#/$defs/Sajdah"
+          },
+          "title": "Sajdah",
+          "type": "array"
+        }
+      },
+      "required": [
+        "meta",
+        "surahs",
+        "juz",
+        "manzil",
+        "ruku",
+        "hizb",
+        "rub",
+        "pages",
+        "sajdah"
+      ],
+      "title": "quran-full",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/quran.full.schema.json",
+      "$comment": "quran-etl wire schema version 4"
+    },
+    "quran-full-min": {
+      "$defs": {
+        "MinAyah": {
+          "additionalProperties": false,
+          "properties": {
+            "k": {
+              "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "t": {
+              "title": "T",
+              "type": "string"
+            },
+            "tc": {
+              "title": "Tc",
+              "type": "string"
+            },
+            "sj": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "o",
+                    "r"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sj"
+            },
+            "p": {
+              "maximum": 604,
+              "minimum": 1,
+              "title": "P",
+              "type": "integer"
+            },
+            "ps": {
+              "$ref": "#/$defs/MinAyahParents"
+            }
+          },
+          "required": [
+            "k",
+            "t",
+            "tc",
+            "sj",
+            "p",
+            "ps"
+          ],
+          "title": "MinAyah",
+          "type": "object"
+        },
+        "MinAyahParents": {
+          "additionalProperties": false,
+          "properties": {
+            "s": {
+              "title": "S",
+              "type": "string"
+            },
+            "j": {
+              "title": "J",
+              "type": "string"
+            },
+            "m": {
+              "title": "M",
+              "type": "string"
+            },
+            "r": {
+              "title": "R",
+              "type": "string"
+            },
+            "h": {
+              "title": "H",
+              "type": "string"
+            },
+            "q": {
+              "title": "Q",
+              "type": "string"
+            },
+            "p": {
+              "title": "P",
+              "type": "string"
+            }
+          },
+          "required": [
+            "s",
+            "j",
+            "m",
+            "r",
+            "h",
+            "q",
+            "p"
+          ],
+          "title": "MinAyahParents",
+          "type": "object"
+        },
+        "MinHizb": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^hizb:[0-9]{2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            },
+            "ji": {
+              "title": "Ji",
+              "type": "string"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "sa",
+            "ea",
+            "ac",
+            "a",
+            "ji"
+          ],
+          "title": "MinHizb",
+          "type": "object"
+        },
+        "MinJuz": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^juz:[0-9]{2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            },
+            "sc": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sc",
+              "type": "array"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "sa",
+            "ea",
+            "ac",
+            "a",
+            "sc"
+          ],
+          "title": "MinJuz",
+          "type": "object"
+        },
+        "MinManzil": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^manzil:[0-9]{2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            },
+            "sc": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sc",
+              "type": "array"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "sa",
+            "ea",
+            "ac",
+            "a",
+            "sc"
+          ],
+          "title": "MinManzil",
+          "type": "object"
+        },
+        "MinPage": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^page:[0-9]{3}$",
+              "title": "K",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "sa",
+            "ea",
+            "ac",
+            "a"
+          ],
+          "title": "MinPage",
+          "type": "object"
+        },
+        "MinRub": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^rub:[0-9]{3}$",
+              "title": "K",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            },
+            "hi": {
+              "title": "Hi",
+              "type": "string"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "sa",
+            "ea",
+            "ac",
+            "a",
+            "hi"
+          ],
+          "title": "MinRub",
+          "type": "object"
+        },
+        "MinRuku": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^ruku:[0-9]{3}$",
+              "title": "K",
+              "type": "string"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            },
+            "sh": {
+              "title": "Sh",
+              "type": "string"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "sa",
+            "ea",
+            "ac",
+            "a",
+            "sh"
+          ],
+          "title": "MinRuku",
+          "type": "object"
+        },
+        "MinSajdah": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "maximum": 15,
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^sajdah:[0-9]{2}$",
+              "title": "K",
+              "type": "string"
+            },
+            "ay": {
+              "title": "Ay",
+              "type": "string"
+            },
+            "t": {
+              "enum": [
+                "o",
+                "r"
+              ],
+              "title": "T",
+              "type": "string"
+            },
+            "sh": {
+              "title": "Sh",
+              "type": "string"
+            },
+            "ad": {
+              "$ref": "#/$defs/MinAyah"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "ay",
+            "t",
+            "sh",
+            "ad"
+          ],
+          "title": "MinSajdah",
+          "type": "object"
+        },
+        "MinSourceMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "src": {
+              "title": "Src",
+              "type": "string"
+            },
+            "tt": {
+              "title": "Tt",
+              "type": "string"
+            },
+            "ac": {
+              "title": "Ac",
+              "type": "integer"
+            },
+            "sc": {
+              "title": "Sc",
+              "type": "integer"
+            },
+            "jc": {
+              "title": "Jc",
+              "type": "integer"
+            },
+            "mnc": {
+              "title": "Mnc",
+              "type": "integer"
+            },
+            "rc": {
+              "title": "Rc",
+              "type": "integer"
+            },
+            "hc": {
+              "title": "Hc",
+              "type": "integer"
+            },
+            "rbc": {
+              "title": "Rbc",
+              "type": "integer"
+            },
+            "pc": {
+              "title": "Pc",
+              "type": "integer"
+            },
+            "sac": {
+              "title": "Sac",
+              "type": "integer"
+            },
+            "ga": {
+              "title": "Ga",
+              "type": "string"
+            },
+            "sv": {
+              "const": 4,
+              "title": "Sv",
+              "type": "integer"
+            },
+            "sp": {
+              "additionalProperties": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "title": "Sp",
+              "type": "object"
+            }
+          },
+          "required": [
+            "src",
+            "tt",
+            "ac",
+            "sc",
+            "jc",
+            "mnc",
+            "rc",
+            "hc",
+            "rbc",
+            "pc",
+            "sac",
+            "ga",
+            "sv",
+            "sp"
+          ],
+          "title": "MinSourceMetadata",
+          "type": "object"
+        },
+        "MinSurah": {
+          "additionalProperties": false,
+          "properties": {
+            "i": {
+              "maximum": 114,
+              "minimum": 1,
+              "title": "I",
+              "type": "integer"
+            },
+            "k": {
+              "pattern": "^surah:[0-9]{3}$",
+              "title": "K",
+              "type": "string"
+            },
+            "na": {
+              "title": "Na",
+              "type": "string"
+            },
+            "nt": {
+              "title": "Nt",
+              "type": "string"
+            },
+            "ne": {
+              "title": "Ne",
+              "type": "string"
+            },
+            "rt": {
+              "enum": [
+                "Meccan",
+                "Medinan"
+              ],
+              "title": "Rt",
+              "type": "string"
+            },
+            "ac": {
+              "minimum": 1,
+              "title": "Ac",
+              "type": "integer"
+            },
+            "rc": {
+              "minimum": 0,
+              "title": "Rc",
+              "type": "integer"
+            },
+            "sa": {
+              "title": "Sa",
+              "type": "string"
+            },
+            "ea": {
+              "title": "Ea",
+              "type": "string"
+            },
+            "a": {
+              "items": {
+                "$ref": "#/$defs/MinAyah"
+              },
+              "title": "A",
+              "type": "array"
+            }
+          },
+          "required": [
+            "i",
+            "k",
+            "na",
+            "nt",
+            "ne",
+            "rt",
+            "ac",
+            "rc",
+            "sa",
+            "ea",
+            "a"
+          ],
+          "title": "MinSurah",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "m": {
+          "$ref": "#/$defs/MinSourceMetadata"
+        },
+        "s": {
+          "items": {
+            "$ref": "#/$defs/MinSurah"
+          },
+          "title": "S",
+          "type": "array"
+        },
+        "j": {
+          "items": {
+            "$ref": "#/$defs/MinJuz"
+          },
+          "title": "J",
+          "type": "array"
+        },
+        "mn": {
+          "items": {
+            "$ref": "#/$defs/MinManzil"
+          },
+          "title": "Mn",
+          "type": "array"
+        },
+        "rk": {
+          "items": {
+            "$ref": "#/$defs/MinRuku"
+          },
+          "title": "Rk",
+          "type": "array"
+        },
+        "hz": {
+          "items": {
+            "$ref": "#/$defs/MinHizb"
+          },
+          "title": "Hz",
+          "type": "array"
+        },
+        "rb": {
+          "items": {
+            "$ref": "#/$defs/MinRub"
+          },
+          "title": "Rb",
+          "type": "array"
+        },
+        "pg": {
+          "items": {
+            "$ref": "#/$defs/MinPage"
+          },
+          "title": "Pg",
+          "type": "array"
+        },
+        "sj": {
+          "items": {
+            "$ref": "#/$defs/MinSajdah"
+          },
+          "title": "Sj",
+          "type": "array"
+        }
+      },
+      "required": [
+        "m",
+        "s",
+        "j",
+        "mn",
+        "rk",
+        "hz",
+        "rb",
+        "pg",
+        "sj"
+      ],
+      "title": "quran-full-min",
+      "type": "object",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://quran-etl.local/schemas/quran.full.min.schema.json",
+      "$comment": "quran-etl wire schema version 4"
     }
-  }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/ayah"
+    },
+    {
+      "$ref": "#/$defs/surah"
+    },
+    {
+      "$ref": "#/$defs/juz"
+    },
+    {
+      "$ref": "#/$defs/manzil"
+    },
+    {
+      "$ref": "#/$defs/hizb"
+    },
+    {
+      "$ref": "#/$defs/rub"
+    },
+    {
+      "$ref": "#/$defs/ruku"
+    },
+    {
+      "$ref": "#/$defs/page"
+    },
+    {
+      "$ref": "#/$defs/sajdah"
+    },
+    {
+      "$ref": "#/$defs/ayah-min"
+    },
+    {
+      "$ref": "#/$defs/surah-min"
+    },
+    {
+      "$ref": "#/$defs/juz-min"
+    },
+    {
+      "$ref": "#/$defs/manzil-min"
+    },
+    {
+      "$ref": "#/$defs/hizb-min"
+    },
+    {
+      "$ref": "#/$defs/rub-min"
+    },
+    {
+      "$ref": "#/$defs/ruku-min"
+    },
+    {
+      "$ref": "#/$defs/page-min"
+    },
+    {
+      "$ref": "#/$defs/sajdah-min"
+    },
+    {
+      "$ref": "#/$defs/scope-index"
+    },
+    {
+      "$ref": "#/$defs/scope-index-min"
+    },
+    {
+      "$ref": "#/$defs/index"
+    },
+    {
+      "$ref": "#/$defs/index-min"
+    },
+    {
+      "$ref": "#/$defs/quran-full"
+    },
+    {
+      "$ref": "#/$defs/quran-full-min"
+    }
+  ]
 }

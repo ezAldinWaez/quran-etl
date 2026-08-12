@@ -1,0 +1,249 @@
+{
+  "$defs": {
+    "AyahIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "sura": {
+          "title": "Sura",
+          "type": "integer"
+        },
+        "aya": {
+          "title": "Aya",
+          "type": "integer"
+        },
+        "file": {
+          "title": "File",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "id",
+        "sura",
+        "aya",
+        "file"
+      ],
+      "title": "AyahIndexEntry",
+      "type": "object"
+    },
+    "RangeIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "file": {
+          "title": "File",
+          "type": "string"
+        },
+        "start": {
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "title": "End",
+          "type": "string"
+        },
+        "ayah_count": {
+          "title": "Ayah Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "key",
+        "file",
+        "start",
+        "end",
+        "ayah_count"
+      ],
+      "title": "RangeIndexEntry",
+      "type": "object"
+    },
+    "SajdahIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "file": {
+          "title": "File",
+          "type": "string"
+        },
+        "ayah": {
+          "title": "Ayah",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "obligatory",
+            "recommended"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "key",
+        "file",
+        "ayah",
+        "type"
+      ],
+      "title": "SajdahIndexEntry",
+      "type": "object"
+    },
+    "SurahIndexChildren": {
+      "additionalProperties": false,
+      "properties": {
+        "ayah_count": {
+          "title": "Ayah Count",
+          "type": "integer"
+        },
+        "ruku_count": {
+          "title": "Ruku Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ayah_count",
+        "ruku_count"
+      ],
+      "title": "SurahIndexChildren",
+      "type": "object"
+    },
+    "SurahIndexEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "name_arabic": {
+          "title": "Name Arabic",
+          "type": "string"
+        },
+        "name_transliteration": {
+          "title": "Name Transliteration",
+          "type": "string"
+        },
+        "name_english": {
+          "title": "Name English",
+          "type": "string"
+        },
+        "revelation_type": {
+          "enum": [
+            "Meccan",
+            "Medinan"
+          ],
+          "title": "Revelation Type",
+          "type": "string"
+        },
+        "revelation_order": {
+          "title": "Revelation Order",
+          "type": "integer"
+        },
+        "ayah_count": {
+          "title": "Ayah Count",
+          "type": "integer"
+        },
+        "ruku_count": {
+          "title": "Ruku Count",
+          "type": "integer"
+        },
+        "start": {
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "title": "End",
+          "type": "string"
+        },
+        "parents": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Parents",
+          "type": "array"
+        },
+        "children": {
+          "$ref": "#/$defs/SurahIndexChildren"
+        },
+        "file": {
+          "title": "File",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "key",
+        "name_arabic",
+        "name_transliteration",
+        "name_english",
+        "revelation_type",
+        "revelation_order",
+        "ayah_count",
+        "ruku_count",
+        "start",
+        "end",
+        "parents",
+        "children",
+        "file"
+      ],
+      "title": "SurahIndexEntry",
+      "type": "object"
+    }
+  },
+  "anyOf": [
+    {
+      "items": {
+        "$ref": "#/$defs/SurahIndexEntry"
+      },
+      "type": "array"
+    },
+    {
+      "items": {
+        "$ref": "#/$defs/AyahIndexEntry"
+      },
+      "type": "array"
+    },
+    {
+      "items": {
+        "$ref": "#/$defs/RangeIndexEntry"
+      },
+      "type": "array"
+    },
+    {
+      "items": {
+        "$ref": "#/$defs/SajdahIndexEntry"
+      },
+      "type": "array"
+    }
+  ],
+  "title": "scope-index",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/scope-index.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}

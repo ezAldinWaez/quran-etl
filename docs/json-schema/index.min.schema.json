@@ -1,0 +1,121 @@
+{
+  "$defs": {
+    "MinSourceMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "title": "Src",
+          "type": "string"
+        },
+        "tt": {
+          "title": "Tt",
+          "type": "string"
+        },
+        "ac": {
+          "title": "Ac",
+          "type": "integer"
+        },
+        "sc": {
+          "title": "Sc",
+          "type": "integer"
+        },
+        "jc": {
+          "title": "Jc",
+          "type": "integer"
+        },
+        "mnc": {
+          "title": "Mnc",
+          "type": "integer"
+        },
+        "rc": {
+          "title": "Rc",
+          "type": "integer"
+        },
+        "hc": {
+          "title": "Hc",
+          "type": "integer"
+        },
+        "rbc": {
+          "title": "Rbc",
+          "type": "integer"
+        },
+        "pc": {
+          "title": "Pc",
+          "type": "integer"
+        },
+        "sac": {
+          "title": "Sac",
+          "type": "integer"
+        },
+        "ga": {
+          "title": "Ga",
+          "type": "string"
+        },
+        "sv": {
+          "const": 4,
+          "title": "Sv",
+          "type": "integer"
+        },
+        "sp": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Sp",
+          "type": "object"
+        }
+      },
+      "required": [
+        "src",
+        "tt",
+        "ac",
+        "sc",
+        "jc",
+        "mnc",
+        "rc",
+        "hc",
+        "rbc",
+        "pc",
+        "sac",
+        "ga",
+        "sv",
+        "sp"
+      ],
+      "title": "MinSourceMetadata",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "const": 4,
+      "title": "V",
+      "type": "integer"
+    },
+    "ga": {
+      "title": "Ga",
+      "type": "string"
+    },
+    "scopes": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Scopes",
+      "type": "object"
+    },
+    "totals": {
+      "$ref": "#/$defs/MinSourceMetadata"
+    }
+  },
+  "required": [
+    "v",
+    "ga",
+    "scopes",
+    "totals"
+  ],
+  "title": "index-min",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/index.min.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}

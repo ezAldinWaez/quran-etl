@@ -1,0 +1,121 @@
+{
+  "$defs": {
+    "SourceMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "text_type": {
+          "title": "Text Type",
+          "type": "string"
+        },
+        "ayat_count": {
+          "title": "Ayat Count",
+          "type": "integer"
+        },
+        "surah_count": {
+          "title": "Surah Count",
+          "type": "integer"
+        },
+        "juz_count": {
+          "title": "Juz Count",
+          "type": "integer"
+        },
+        "manzil_count": {
+          "title": "Manzil Count",
+          "type": "integer"
+        },
+        "ruku_count": {
+          "title": "Ruku Count",
+          "type": "integer"
+        },
+        "hizb_count": {
+          "title": "Hizb Count",
+          "type": "integer"
+        },
+        "rub_count": {
+          "title": "Rub Count",
+          "type": "integer"
+        },
+        "page_count": {
+          "title": "Page Count",
+          "type": "integer"
+        },
+        "sajdah_count": {
+          "title": "Sajdah Count",
+          "type": "integer"
+        },
+        "generated_at": {
+          "title": "Generated At",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 4,
+          "title": "Schema Version",
+          "type": "integer"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source",
+        "text_type",
+        "ayat_count",
+        "surah_count",
+        "juz_count",
+        "manzil_count",
+        "ruku_count",
+        "hizb_count",
+        "rub_count",
+        "page_count",
+        "sajdah_count",
+        "generated_at",
+        "schema_version",
+        "provenance"
+      ],
+      "title": "SourceMetadata",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 4,
+      "title": "Version",
+      "type": "integer"
+    },
+    "generated_at": {
+      "title": "Generated At",
+      "type": "string"
+    },
+    "scopes": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Scopes",
+      "type": "object"
+    },
+    "totals": {
+      "$ref": "#/$defs/SourceMetadata"
+    }
+  },
+  "required": [
+    "version",
+    "generated_at",
+    "scopes",
+    "totals"
+  ],
+  "title": "index",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/index.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}

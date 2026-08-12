@@ -1,0 +1,684 @@
+{
+  "$defs": {
+    "MinAyah": {
+      "additionalProperties": false,
+      "properties": {
+        "k": {
+          "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "t": {
+          "title": "T",
+          "type": "string"
+        },
+        "tc": {
+          "title": "Tc",
+          "type": "string"
+        },
+        "sj": {
+          "anyOf": [
+            {
+              "enum": [
+                "o",
+                "r"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sj"
+        },
+        "p": {
+          "maximum": 604,
+          "minimum": 1,
+          "title": "P",
+          "type": "integer"
+        },
+        "ps": {
+          "$ref": "#/$defs/MinAyahParents"
+        }
+      },
+      "required": [
+        "k",
+        "t",
+        "tc",
+        "sj",
+        "p",
+        "ps"
+      ],
+      "title": "MinAyah",
+      "type": "object"
+    },
+    "MinAyahParents": {
+      "additionalProperties": false,
+      "properties": {
+        "s": {
+          "title": "S",
+          "type": "string"
+        },
+        "j": {
+          "title": "J",
+          "type": "string"
+        },
+        "m": {
+          "title": "M",
+          "type": "string"
+        },
+        "r": {
+          "title": "R",
+          "type": "string"
+        },
+        "h": {
+          "title": "H",
+          "type": "string"
+        },
+        "q": {
+          "title": "Q",
+          "type": "string"
+        },
+        "p": {
+          "title": "P",
+          "type": "string"
+        }
+      },
+      "required": [
+        "s",
+        "j",
+        "m",
+        "r",
+        "h",
+        "q",
+        "p"
+      ],
+      "title": "MinAyahParents",
+      "type": "object"
+    },
+    "MinHizb": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^hizb:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "ji": {
+          "title": "Ji",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "ji"
+      ],
+      "title": "MinHizb",
+      "type": "object"
+    },
+    "MinJuz": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^juz:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "sc": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sc",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "sc"
+      ],
+      "title": "MinJuz",
+      "type": "object"
+    },
+    "MinManzil": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^manzil:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "sc": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sc",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "sc"
+      ],
+      "title": "MinManzil",
+      "type": "object"
+    },
+    "MinPage": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^page:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a"
+      ],
+      "title": "MinPage",
+      "type": "object"
+    },
+    "MinRub": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^rub:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "hi": {
+          "title": "Hi",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "hi"
+      ],
+      "title": "MinRub",
+      "type": "object"
+    },
+    "MinRuku": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^ruku:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        },
+        "sh": {
+          "title": "Sh",
+          "type": "string"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "sa",
+        "ea",
+        "ac",
+        "a",
+        "sh"
+      ],
+      "title": "MinRuku",
+      "type": "object"
+    },
+    "MinSajdah": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "maximum": 15,
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^sajdah:[0-9]{2}$",
+          "title": "K",
+          "type": "string"
+        },
+        "ay": {
+          "title": "Ay",
+          "type": "string"
+        },
+        "t": {
+          "enum": [
+            "o",
+            "r"
+          ],
+          "title": "T",
+          "type": "string"
+        },
+        "sh": {
+          "title": "Sh",
+          "type": "string"
+        },
+        "ad": {
+          "$ref": "#/$defs/MinAyah"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "ay",
+        "t",
+        "sh",
+        "ad"
+      ],
+      "title": "MinSajdah",
+      "type": "object"
+    },
+    "MinSourceMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "title": "Src",
+          "type": "string"
+        },
+        "tt": {
+          "title": "Tt",
+          "type": "string"
+        },
+        "ac": {
+          "title": "Ac",
+          "type": "integer"
+        },
+        "sc": {
+          "title": "Sc",
+          "type": "integer"
+        },
+        "jc": {
+          "title": "Jc",
+          "type": "integer"
+        },
+        "mnc": {
+          "title": "Mnc",
+          "type": "integer"
+        },
+        "rc": {
+          "title": "Rc",
+          "type": "integer"
+        },
+        "hc": {
+          "title": "Hc",
+          "type": "integer"
+        },
+        "rbc": {
+          "title": "Rbc",
+          "type": "integer"
+        },
+        "pc": {
+          "title": "Pc",
+          "type": "integer"
+        },
+        "sac": {
+          "title": "Sac",
+          "type": "integer"
+        },
+        "ga": {
+          "title": "Ga",
+          "type": "string"
+        },
+        "sv": {
+          "const": 4,
+          "title": "Sv",
+          "type": "integer"
+        },
+        "sp": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Sp",
+          "type": "object"
+        }
+      },
+      "required": [
+        "src",
+        "tt",
+        "ac",
+        "sc",
+        "jc",
+        "mnc",
+        "rc",
+        "hc",
+        "rbc",
+        "pc",
+        "sac",
+        "ga",
+        "sv",
+        "sp"
+      ],
+      "title": "MinSourceMetadata",
+      "type": "object"
+    },
+    "MinSurah": {
+      "additionalProperties": false,
+      "properties": {
+        "i": {
+          "maximum": 114,
+          "minimum": 1,
+          "title": "I",
+          "type": "integer"
+        },
+        "k": {
+          "pattern": "^surah:[0-9]{3}$",
+          "title": "K",
+          "type": "string"
+        },
+        "na": {
+          "title": "Na",
+          "type": "string"
+        },
+        "nt": {
+          "title": "Nt",
+          "type": "string"
+        },
+        "ne": {
+          "title": "Ne",
+          "type": "string"
+        },
+        "rt": {
+          "enum": [
+            "Meccan",
+            "Medinan"
+          ],
+          "title": "Rt",
+          "type": "string"
+        },
+        "ac": {
+          "minimum": 1,
+          "title": "Ac",
+          "type": "integer"
+        },
+        "rc": {
+          "minimum": 0,
+          "title": "Rc",
+          "type": "integer"
+        },
+        "sa": {
+          "title": "Sa",
+          "type": "string"
+        },
+        "ea": {
+          "title": "Ea",
+          "type": "string"
+        },
+        "a": {
+          "items": {
+            "$ref": "#/$defs/MinAyah"
+          },
+          "title": "A",
+          "type": "array"
+        }
+      },
+      "required": [
+        "i",
+        "k",
+        "na",
+        "nt",
+        "ne",
+        "rt",
+        "ac",
+        "rc",
+        "sa",
+        "ea",
+        "a"
+      ],
+      "title": "MinSurah",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "m": {
+      "$ref": "#/$defs/MinSourceMetadata"
+    },
+    "s": {
+      "items": {
+        "$ref": "#/$defs/MinSurah"
+      },
+      "title": "S",
+      "type": "array"
+    },
+    "j": {
+      "items": {
+        "$ref": "#/$defs/MinJuz"
+      },
+      "title": "J",
+      "type": "array"
+    },
+    "mn": {
+      "items": {
+        "$ref": "#/$defs/MinManzil"
+      },
+      "title": "Mn",
+      "type": "array"
+    },
+    "rk": {
+      "items": {
+        "$ref": "#/$defs/MinRuku"
+      },
+      "title": "Rk",
+      "type": "array"
+    },
+    "hz": {
+      "items": {
+        "$ref": "#/$defs/MinHizb"
+      },
+      "title": "Hz",
+      "type": "array"
+    },
+    "rb": {
+      "items": {
+        "$ref": "#/$defs/MinRub"
+      },
+      "title": "Rb",
+      "type": "array"
+    },
+    "pg": {
+      "items": {
+        "$ref": "#/$defs/MinPage"
+      },
+      "title": "Pg",
+      "type": "array"
+    },
+    "sj": {
+      "items": {
+        "$ref": "#/$defs/MinSajdah"
+      },
+      "title": "Sj",
+      "type": "array"
+    }
+  },
+  "required": [
+    "m",
+    "s",
+    "j",
+    "mn",
+    "rk",
+    "hz",
+    "rb",
+    "pg",
+    "sj"
+  ],
+  "title": "quran-full-min",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quran-etl.local/schemas/quran.full.min.schema.json",
+  "$comment": "quran-etl wire schema version 4"
+}
