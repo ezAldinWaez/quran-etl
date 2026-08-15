@@ -1,4 +1,0 @@
-interface:
-  display_name: "Author qmd2word QMD"
-  short_description: "Author reproducible QMD for editable Word output"
-  default_prompt: "Use $qmd2word-author to create or update a Quarto QMD project and render its DOCX."

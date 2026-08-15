@@ -1,4 +1,4 @@
--r requirements-qmd2word.txt
+-r requirements-docduet.txt
 pandas>=2.0
 matplotlib>=3.11.1
 seaborn>=0.13

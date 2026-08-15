@@ -1,0 +1,4 @@
+interface:
+  display_name: "Author DocDuet QMD"
+  short_description: "Author reproducible QMD for editable Word output"
+  default_prompt: "Use $docduet-author to create or update a Quarto QMD project and render its DOCX."

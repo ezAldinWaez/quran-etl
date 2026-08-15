@@ -2,7 +2,7 @@
 title: "فحص مسار QMD إلى Word"
 cover:
   title: "فحص تكاملي"
-  subtitle: "qmd2word في مشروع Quran ETL"
+  subtitle: "DocDuet في مشروع Quran ETL"
 ---
 
 # مستند فحص صغير

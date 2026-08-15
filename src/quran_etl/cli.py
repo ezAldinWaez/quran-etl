@@ -101,7 +101,7 @@ def _build_parser() -> argparse.ArgumentParser:
 def _build_report_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="quran-etl",
-        description="Render and compare Quran ETL reports with qmd2word.",
+        description="Render and compare Quran ETL reports with DocDuet.",
     )
     commands = parser.add_subparsers(dest="report_command", required=True)
     render_parser = commands.add_parser("render", help="Render one Quarto entry QMD to DOCX.")
@@ -109,29 +109,29 @@ def _build_report_parser() -> argparse.ArgumentParser:
     render_parser.add_argument("--output", type=Path, required=True)
     compare_parser = commands.add_parser(
         "compare",
-        help="Render a QMD baseline and compare it with an edited DOCX.",
+        help="Compare an edited DOCX with its sent DOCX or matching QMD baseline.",
     )
-    compare_parser.add_argument("entry_qmd", type=Path)
+    compare_parser.add_argument("baseline", type=Path)
     compare_parser.add_argument("edited_docx", type=Path)
     compare_parser.add_argument("--output-dir", type=Path, required=True)
     return parser
 
 
-def _load_qmd2word() -> ModuleType:
-    import qmd2word
+def _load_docduet() -> ModuleType:
+    import docduet
 
-    return qmd2word
+    return docduet
 
 
 def _run_report_command(argv: list[str]) -> int:
     args = _build_report_parser().parse_args(argv)
     try:
-        qmd2word = _load_qmd2word()
+        docduet = _load_docduet()
     except ModuleNotFoundError as exc:
-        if exc.name != "qmd2word":
+        if exc.name != "docduet":
             raise
         print(
-            "quran-etl: report commands require qmd2word; "
+            "quran-etl: report commands require DocDuet; "
             'install it with `python -m pip install -e ".[reports]"`.',
             file=sys.stderr,
         )
@@ -139,8 +139,8 @@ def _run_report_command(argv: list[str]) -> int:
 
     try:
         if args.report_command == "render":
-            result = qmd2word.render(
-                qmd2word.RenderRequest(entry_qmd=args.entry_qmd, output=args.output)
+            result = docduet.render(
+                docduet.RenderRequest(entry_qmd=args.entry_qmd, output=args.output)
             )
             payload = {
                 "entry_qmd": str(result.entry_qmd),
@@ -148,9 +148,9 @@ def _run_report_command(argv: list[str]) -> int:
                 "anchored_blocks": len(result.source_map.get("blocks", [])),
             }
         else:
-            result = qmd2word.compare(
-                qmd2word.CompareRequest(
-                    entry_qmd=args.entry_qmd,
+            result = docduet.compare(
+                docduet.CompareRequest(
+                    baseline=args.baseline,
                     edited_docx=args.edited_docx,
                     output_dir=args.output_dir,
                 )

@@ -72,7 +72,7 @@ def test_schemas_only_short_circuits_pipeline(tmp_path: Path, monkeypatch):
     assert calls == [Path("docs/json-schema")]
 
 
-def test_render_delegates_to_qmd2word_api(monkeypatch, capsys):
+def test_render_delegates_to_docduet_api(monkeypatch, capsys):
     requests = []
 
     class RenderRequest:
@@ -89,7 +89,7 @@ def test_render_delegates_to_qmd2word_api(monkeypatch, capsys):
         )
 
     api = SimpleNamespace(RenderRequest=RenderRequest, render=render)
-    monkeypatch.setattr(cli, "_load_qmd2word", lambda: api)
+    monkeypatch.setattr(cli, "_load_docduet", lambda: api)
 
     assert cli.main(["render", "reports/tests/smoke.qmd", "--output", "smoke.docx"]) == 0
     assert requests[0].entry_qmd == Path("reports/tests/smoke.qmd")
@@ -97,12 +97,12 @@ def test_render_delegates_to_qmd2word_api(monkeypatch, capsys):
     assert '"anchored_blocks": 2' in capsys.readouterr().out
 
 
-def test_compare_delegates_to_qmd2word_api(monkeypatch, capsys):
+def test_compare_delegates_to_docduet_api(monkeypatch, capsys):
     requests = []
 
     class CompareRequest:
-        def __init__(self, *, entry_qmd, edited_docx, output_dir):
-            self.entry_qmd = entry_qmd
+        def __init__(self, *, baseline, edited_docx, output_dir):
+            self.baseline = baseline
             self.edited_docx = edited_docx
             self.output_dir = output_dir
 
@@ -117,7 +117,7 @@ def test_compare_delegates_to_qmd2word_api(monkeypatch, capsys):
         )
 
     api = SimpleNamespace(CompareRequest=CompareRequest, compare=compare)
-    monkeypatch.setattr(cli, "_load_qmd2word", lambda: api)
+    monkeypatch.setattr(cli, "_load_docduet", lambda: api)
 
     assert cli.main(
         [
@@ -128,15 +128,15 @@ def test_compare_delegates_to_qmd2word_api(monkeypatch, capsys):
             "comparison",
         ]
     ) == 0
-    assert requests[0].entry_qmd == Path("reports/tests/smoke.qmd")
+    assert requests[0].baseline == Path("reports/tests/smoke.qmd")
     assert requests[0].edited_docx == Path("edited.docx")
     assert requests[0].output_dir == Path("comparison")
     assert '"change_count": 3' in capsys.readouterr().out
 
 
-def test_report_command_explains_missing_qmd2word(monkeypatch, capsys):
-    missing = ModuleNotFoundError("No module named 'qmd2word'", name="qmd2word")
-    monkeypatch.setattr(cli, "_load_qmd2word", lambda: (_ for _ in ()).throw(missing))
+def test_report_command_explains_missing_docduet(monkeypatch, capsys):
+    missing = ModuleNotFoundError("No module named 'docduet'", name="docduet")
+    monkeypatch.setattr(cli, "_load_docduet", lambda: (_ for _ in ()).throw(missing))
 
     assert cli.main(["render", "report.qmd", "--output", "report.docx"]) == 1
     assert ".[reports]" in capsys.readouterr().err

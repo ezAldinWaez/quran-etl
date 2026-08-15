@@ -1,4 +1,4 @@
 interface:
   display_name: "Sync edited Word to QMD"
   short_description: "Reconcile edited Word content into QMD sources"
-  default_prompt: "Use $qmd2word-sync to compare an edited DOCX with its QMD source and reconcile the changes."
+  default_prompt: "Use $docduet-sync to compare an edited DOCX with its QMD source and reconcile the changes."

@@ -26,8 +26,8 @@ Use `--force-download` to refresh the `raw/` cache. Use `--schemas-only` to rege
 - `io_utils.py`: atomic writes
 - `config/settings.yaml`: pipeline configuration
 - `tests/`: unit, end-to-end, schema, and corruption-rejection coverage
-- `reports/`: executable Quarto sources and qmd2word DOCX workflow; follow `reports/README.md`
-- `.agents/skills/`: repo-local ETL/report workflows plus pinned Quarto, qmd2word authoring, and Word-reconciliation skills
+- `reports/`: executable Quarto sources and DocDuet DOCX workflow; follow `reports/README.md`
+- `.agents/skills/`: repo-local ETL/report workflows plus pinned Quarto, DocDuet authoring, and Word-reconciliation skills
 
 ## Required invariants
 

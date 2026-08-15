@@ -1,19 +1,19 @@
 {
   "version": 1,
   "skills": {
-    "qmd2word-author": {
-      "source": "ezAldinWaez/qmd2word",
-      "ref": "v0.3.1",
+    "docduet-author": {
+      "source": "ezAldinWaez/DocDuet",
+      "ref": "v0.4.0",
       "sourceType": "github",
-      "skillPath": "skills/qmd2word-author/SKILL.md",
-      "computedHash": "13a5704f9e4a5f3432b9372ae37602e213bcc3212efd32f303ccd18a777aba43"
+      "skillPath": "skills/docduet-author/SKILL.md",
+      "computedHash": "ca828735e60305ff978886c495e861f30a83671bd13660b67ef5debeeb91c287"
     },
-    "qmd2word-sync": {
-      "source": "ezAldinWaez/qmd2word",
-      "ref": "v0.3.1",
+    "docduet-sync": {
+      "source": "ezAldinWaez/DocDuet",
+      "ref": "v0.4.0",
       "sourceType": "github",
-      "skillPath": "skills/qmd2word-sync/SKILL.md",
-      "computedHash": "7a7a29e08484738a1c73374c1c9ecf41eaafefaaf067ccf0036b4d5876c2e9fd"
+      "skillPath": "skills/docduet-sync/SKILL.md",
+      "computedHash": "c574d7ec0aa330790d7d727a9e2fa4042101f63eb93f38cb2acd31adc43855b9"
     },
     "quarto-authoring": {
       "source": "posit-dev/skills",

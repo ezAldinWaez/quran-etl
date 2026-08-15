@@ -9,7 +9,7 @@ project:
     - examples/*.qmd
     - tests/*.qmd
 
-qmd2word:
+docduet:
   template: resources/docx/template.docx
   content-placeholder: "[[CONTENT]]"
   figure-max-height-cm: 15

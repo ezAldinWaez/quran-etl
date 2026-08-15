@@ -1,1 +1,0 @@
-qmd2word @ git+https://github.com/ezAldinWaez/qmd2word.git@v0.3.1

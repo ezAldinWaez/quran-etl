@@ -1,0 +1,1 @@
+docduet @ git+https://github.com/ezAldinWaez/DocDuet.git@v0.4.0

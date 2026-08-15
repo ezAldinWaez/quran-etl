@@ -19,7 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 reports = [
-    "qmd2word @ git+https://github.com/ezAldinWaez/qmd2word.git@v0.3.1",
+    "docduet @ git+https://github.com/ezAldinWaez/DocDuet.git@v0.4.0",
 ]
 dev = [
     "pytest>=8.0",
