@@ -1,0 +1,5 @@
+# Report template sources
+
+`template-base.docx` preserves the original authored green Arabic report template, including its editable cover, font settings, headers, and page geometry. `table-style.json` defines the additional data-table style; it leaves the generic table/callout styles intact. The first column follows the Arabic reading direction, all source-table alignments are explicit, and cells have room between labels and values. Headers use the existing dark green with white text; alternate rows use a pale green.
+
+Rebuild with `.venv/Scripts/python.exe reports/scripts/build_report_template.py`. It reads the base and recipe and writes `template.docx`, the file referenced by `_quarto.yml`. Use `reports/production/01-quran-in-numbers.qmd` as the specimen for captions, Arabic labels, numeric columns, mixed text and values, and chart layout; inspect its Word-generated PDF after changing the recipe. `reports/resources/publication.css` provides matching table spacing and colors for HTML and EPUB.

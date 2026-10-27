@@ -57,7 +57,8 @@ def load_scope(scope):
 
 
 def show_table(frame):
-    display(Markdown(frame.to_markdown(index=False)))
+    table = frame.to_markdown(index=False, colalign=("right",) * len(frame.columns))
+    display(Markdown('::: {tbl-style="Quran Data"}\n\n' + table + "\n\n:::"))
 
 
 def verse_reference(ayah, surah_names):
@@ -108,7 +109,7 @@ for juz in juzs:
     pages = [ayah["page"] for ayah in juz["ayahs"]]
     tracker_rows.append({
         "الجزء": juz["id"],
-        "الصفحات": f"{min(pages)}-{max(pages)}",
+        "الصفحات": f"من {min(pages)} إلى {max(pages)}",
         "آخر مراجعة": "",
         "التقييم / 5": "",
         "المراجعة القادمة": "",
@@ -134,7 +135,7 @@ for position, juz in enumerate(juzs):
     lines.extend((
         f"### الجزء {JUZ_NAMES[juz_id - 1]}",
         "",
-        f"**النطاق:** الصفحات {min(pages)}-{max(pages)} | **الآيات:** {juz['ayah_count']} | **الكلمات:** {sum(ayah['word_count'] for ayah in ayahs):,} | **السور:** {len({ayah['sura'] for ayah in ayahs})}",
+        f"**النطاق:** الصفحات من {min(pages)} إلى {max(pages)} | **الآيات:** {juz['ayah_count']} | **الكلمات:** {sum(ayah['word_count'] for ayah in ayahs):,} | **السور:** {len({ayah['sura'] for ayah in ayahs})}",
         "",
         f"**سور الجزء:** {surah_spans(ayahs, surah_names)}.",
         "",
@@ -148,7 +149,7 @@ for position, juz in enumerate(juzs):
         start = verse_reference(rub["ayahs"][0], surah_names)
         end = verse_reference(rub["ayahs"][-1], surah_names)
         lines.extend((
-            f"{local_rub}. **من {start} إلى {end}** | الصفحات {min(rub_pages)}-{max(rub_pages)} | التقييم: ..... / 5",
+            f"{local_rub}. **من {start} إلى {end}** | الصفحات من {min(rub_pages)} إلى {max(rub_pages)} | التقييم: ..... / 5",
             "",
         ))
     lines.extend((

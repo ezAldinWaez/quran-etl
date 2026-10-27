@@ -1,0 +1,5 @@
+table { width: 100%; border-collapse: collapse; margin-block: 1rem 1.5rem; }
+th, td { padding: .55rem .8rem; border-block-end: 1px solid #cfdad2; vertical-align: top; text-align: right; }
+thead th { color: #fff; background: #455f51; font-weight: 700; }
+tbody tr:nth-child(odd) { background: #f3f6f4; }
+caption { color: #455f51; font-weight: 700; text-align: right; }

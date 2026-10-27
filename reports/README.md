@@ -20,7 +20,7 @@ reports/
 
 ## Install and render
 
-Run commands from the repository root. `reports/requirements-docduet.txt` and `skills-lock.json` pin the private `docduet` package and its two agent skills to the `v0.4.0` Git tag so local work and agent workflows use the same release contract. Installation requires GitHub access to the private DocDuet repository. `reports/requirements.txt` includes that minimal file and adds the analytics/Jupyter dependencies used by real reports.
+Run commands from the repository root. `reports/requirements-docduet.txt` and the `reports` extra pin DocDuet 0.4.13 to its exact Git revision. The agent skills in `skills-lock.json` retain their separately reviewed pins. Installation requires GitHub access to the private DocDuet repository. `reports/requirements.txt` includes that minimal file and adds the analytics/Jupyter dependencies used by real reports.
 
 ```bash
 git lfs install
@@ -90,3 +90,7 @@ The smoke document verifies nested-project discovery, cover injection, content t
 - Keep DOCX, PPTX, and the Quran morphology resource under Git LFS. Run `git lfs ls-files` before committing changes to these assets.
 - Use `docduet-author` for report creation or source updates and `docduet-sync` when incorporating an editor-returned Word file.
 - Treat field instructions as part of the document; Word may refresh displayed field results when an editor opens the file.
+
+## Additional reading formats
+
+The project also defines standalone RTL HTML (embedded resources and native MathML) and EPUB. Publish a report with `docduet publish reports/production/01-quran-in-numbers.qmd --to html --output-dir reports/output/html/01-quran-in-numbers` and repeat with `--to epub` and a separate directory. The release workflow regenerates all four formats for each production report, validates them, and uploads them alongside the verified dataset archive; `--skip-web` reuses already validated HTML/EPUB outputs.

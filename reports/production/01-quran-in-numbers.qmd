@@ -41,7 +41,8 @@ def load_scope(scope):
 
 
 def show_table(frame):
-    display(Markdown(frame.to_markdown(index=False)))
+    table = frame.to_markdown(index=False, colalign=("right",) * len(frame.columns))
+    display(Markdown('::: {tbl-style="Quran Data"}\n\n' + table + "\n\n:::"))
 
 
 index = json.loads((DATA_DIR / "index.json").read_text(encoding="utf-8"))

@@ -33,6 +33,20 @@ docduet:
       color: "#17A2B8"
 
 format:
+  html:
+    filters:
+      - resources/filters/normalize_header_includes.lua
+    css: resources/publication.css
+    dir: rtl
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    html-math-method: mathml
+  epub:
+    css: resources/publication.css
+    dir: rtl
+    toc: true
+    toc-depth: 2
   docx:
     dir: rtl
     date-format: "MMMM D, YYYY"

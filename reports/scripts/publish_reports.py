@@ -22,6 +22,8 @@ REPORTS_DIR = ROOT / "reports"
 PRODUCTION_DIR = REPORTS_DIR / "production"
 DOCX_DIR = REPORTS_DIR / "output" / "production"
 PDF_DIR = REPORTS_DIR / "output" / "pdf"
+HTML_DIR = REPORTS_DIR / "output" / "html"
+EPUB_DIR = REPORTS_DIR / "output" / "epub"
 RELEASE_DIR = REPORTS_DIR / "output" / "release"
 LOGGER = logging.getLogger("publish-reports")
 EXPECTED_DATASET_JSON_FILES = 15_746
@@ -44,6 +46,15 @@ class Report:
     @property
     def pdf(self) -> Path:
         return PDF_DIR / f"{self.stem}.pdf"
+
+
+    @property
+    def html(self) -> Path:
+        return HTML_DIR / self.stem / "production" / f"{self.stem}.html"
+
+    @property
+    def epub(self) -> Path:
+        return EPUB_DIR / self.stem / "production" / f"{self.stem}.epub"
 
 
 @dataclass(frozen=True)
@@ -269,6 +280,28 @@ def render_reports(reports: list[Report]) -> None:
         LOGGER.info("Rendered DOCX: %s", report.docx)
 
 
+
+def publish_web_reports(reports: list[Report]) -> None:
+    from docduet import PublishRequest, publish
+
+    for report in reports:
+        for format_name, root in (("html", HTML_DIR), ("epub", EPUB_DIR)):
+            result = publish(PublishRequest(report.source, format_name, root / report.stem))
+            expected = getattr(report, format_name)
+            if result.entrypoint != expected:
+                raise RuntimeError(f"Unexpected {format_name} entrypoint: {result.entrypoint}")
+            LOGGER.info("Published %s: %s", format_name.upper(), result.entrypoint)
+
+
+def validate_web_reports(reports: list[Report]) -> None:
+    for report in reports:
+        if not report.html.is_file() or "<html" not in report.html.read_text(encoding="utf-8"):
+            raise RuntimeError(f"HTML was not created: {report.html}")
+        with zipfile.ZipFile(report.epub) as archive:
+            if archive.read("mimetype") != b"application/epub+zip" or archive.testzip():
+                raise RuntimeError(f"Invalid EPUB package: {report.epub}")
+
+
 def update_story_fields(document: object) -> None:
     for story_type in range(1, 18):
         try:
@@ -446,7 +479,7 @@ def release_notes(
     lines = [
         "# Quran Data and Reports",
         "",
-        "The latest verified Quran JSON datasets, editable Word reports, and print-ready PDFs generated directly from this repository.",
+        "The latest verified Quran JSON datasets, editable Word reports, print-ready PDFs, standalone HTML, and EPUB books generated directly from this repository.",
         "",
         "## Dataset index",
         "",
@@ -467,7 +500,7 @@ def release_notes(
         if report.subtitle:
             lines.append(f"   - Subtitle: {report.subtitle}")
         lines.append(
-            f"   - Downloads: [Word]({base_url}/{quote(report.docx.name)}) | [PDF]({base_url}/{quote(report.pdf.name)})"
+            f"   - Downloads: [Word]({base_url}/{quote(report.docx.name)}) | [PDF]({base_url}/{quote(report.pdf.name)}) | [HTML]({base_url}/{quote(report.html.name)}) | [EPUB]({base_url}/{quote(report.epub.name)})"
         )
     lines.extend(
         (
@@ -521,13 +554,14 @@ def publish_release(
         encoding="utf-8",
     )
     dataset_assets = [dataset.archive for dataset in datasets]
-    report_assets = [path for report in reports for path in (report.docx, report.pdf)]
+    report_assets = [path for report in reports for path in (report.docx, report.pdf, report.html, report.epub)]
     assets = [*dataset_assets, *report_assets]
     for asset in assets:
         if asset.suffix == ".docx":
             validate_docx(asset)
         elif asset.suffix == ".pdf":
             validate_pdf(asset)
+    validate_web_reports(reports)
     for dataset in datasets:
         validate_dataset_archive(dataset)
 
@@ -607,6 +641,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--skip-render", action="store_true", help="Use existing DOCX files")
     parser.add_argument("--skip-pdf", action="store_true", help="Use existing PDFs and do not start Word")
+    parser.add_argument("--skip-web", action="store_true", help="Use existing HTML and EPUB files")
     parser.add_argument("--skip-publish", action="store_true", help="Do not change GitHub")
     parser.add_argument("--release-tag", default="latest", help="Tag used when no release exists")
     parser.add_argument(
@@ -640,6 +675,9 @@ def main() -> int:
         else:
             for report in reports:
                 validate_pdf(report.pdf)
+        if not args.skip_web:
+            publish_web_reports(reports)
+        validate_web_reports(reports)
         if args.skip_publish:
             repository = repository_slug()
             notes_path = RELEASE_DIR / "release-notes.md"
